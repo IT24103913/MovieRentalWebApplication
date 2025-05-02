@@ -1,0 +1,3 @@
+Admin{email='Kv@gmail.com', firstName='Kenuri', lastName='Rajapaksha', password='123321', age='18', status='pending'}
+Admin{email='Jana@gmail.com', firstName='Jana', lastName='Dewa', password='123321', age='16', status='pending'}
+Admin{email='nethu@gmail.com', firstName='Nethu', lastName='Ravira', password='234432', age='20', status='pending'}
