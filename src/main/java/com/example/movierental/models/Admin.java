@@ -78,19 +78,6 @@ public class Admin {
         this.role = role;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Admin{" +
-//                "email='" + email + '\'' +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", password='" + password + '\'' +
-//                ", age='" + age + '\'' +
-//                ", status='" + status + '\'' +
-//                ", role='" + role + '\'' +
-//                '}';
-//    }
-
     public static Admin fromString(String line) {
         String[] parts = line.split(",");
         if (parts.length < 6) return null;
