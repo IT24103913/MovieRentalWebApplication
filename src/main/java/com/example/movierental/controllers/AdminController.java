@@ -1,9 +1,12 @@
 package com.example.movierental.controllers;
 
-import ch.qos.logback.core.model.Model;
+import com.example.movierental.models.Admin;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.ui.Model;
 import com.example.movierental.services.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,8 +37,78 @@ public class AdminController {
                                      @RequestParam String password,
                                      @RequestParam String age,
                                      Model model) {
-        adminService.registerAdmin(email, firstName,lastName, password, age);
-       // model.addAttribute("message", "Registration submitted. Wait for approval.");
+        adminService.registerAdmin(email, firstName, lastName, password, age);
+        model.addAttribute("success", true);
         return "register";
     }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String handleLogin(@RequestParam String email,
+                              @RequestParam String password,
+                              Model model,
+                              HttpSession session) {
+        Admin admin = adminService.login(email, password);
+
+        if (admin == null) {
+            model.addAttribute("error", "Invalid email or password");
+            return "login";
+        }
+
+        session.setAttribute("loggedInAdmin", admin);
+
+        if ("owner".equalsIgnoreCase(admin.getRole())) {
+            return "redirect:/owner/dashboard";
+        } else {
+            if ("approved".equalsIgnoreCase(admin.getStatus())) {
+                return "redirect:/admin/dashboard";
+            } else if ("rejected".equalsIgnoreCase(admin.getStatus())) {
+                model.addAttribute("error", "You have rejected the role");
+                return "login";
+            } else if ("pending".equalsIgnoreCase(admin.getStatus())) {
+                model.addAttribute("error", "You have pending the role");
+                return "login";
+            }
+            return "login";
+        }
+    }
+
+    @GetMapping("/admin/dashboard")
+    public String adminDashboardPage() {
+        return "admin-dashboard";
+    }
+
+    @GetMapping("/owner/admin/list")
+    public String showOwnerAdminList(Model model) {
+        model.addAttribute("pendingAdmins", adminService.getAdminsByStatus("pending"));
+        model.addAttribute("approvedAdmins", adminService.getAdminsByStatus("approved"));
+        model.addAttribute("rejectedAdmins", adminService.getAdminsByStatus("rejected"));
+        return "admin-list";
+    }
+
+    @GetMapping("/owner/dashboard")
+    public String showOwnerDashboard(Model model) {
+        model.addAttribute("countPending", adminService.countPendingAdmins());
+        model.addAttribute("countApproved", adminService.countApprovedAdmins());
+        model.addAttribute("countRejected", adminService.countRejectedAdmins());
+        return "owner-dashboard";
+    }
+
+    @GetMapping("/admin/approve/{email}")
+    public String approveAdmin(@PathVariable String email) {
+        adminService.approveAdmin(email);
+        return "redirect:/owner/dashboard";
+    }
+
+    @GetMapping("/admin/reject/{email}")
+    public String rejectAdmin(@PathVariable String email) {
+        adminService.rejectAdmin(email);
+        return "redirect:/owner/dashboard";
+    }
+
+
 }

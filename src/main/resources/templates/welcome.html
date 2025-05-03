@@ -3,6 +3,10 @@
 <head>
     <title>Welcome</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Magical font -->
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
@@ -10,6 +14,7 @@
             background: url('/images/page1.avif') no-repeat center center fixed;
             background-size: cover;
             position: relative;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         /* Dark overlay to reduce brightness */
@@ -18,7 +23,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* reduces image brightness */
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 0;
         }
 
@@ -32,8 +37,21 @@
             color: white;
         }
 
+        .welcome-box h1 {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .caption {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+
         .btn-warm {
-            background-color: rgba(223,32,49,255); /* reddish-orange */
+            background-color: rgba(223,32,49,255);
             border: none;
             color: white;
         }
@@ -45,7 +63,8 @@
 </head>
 <body class="d-flex justify-content-center align-items-center">
 <div class="welcome-box">
-    <h1 class="mb-4">Welcome to Movie Rental</h1>
+    <h1>Welcome to WizardWatch</h1>
+    <div class="caption">Where Magic Meets The Movies</div>
     <a href="/login" class="btn btn-warm btn-lg me-3">Sign In</a>
     <a href="/signup" class="btn btn-warm btn-lg">Sign Up</a>
 </div>
