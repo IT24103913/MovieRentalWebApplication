@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ReviewService {
 
-    private static final String FILE_PATH = "C:\\Users\\kavee\\Desktop\\OOP Project\\MovieRental\\src\\main\\resources\\reviews.txt";
+    private static final String FILE_PATH = "C:\\Users\\kavee\\Desktop\\OOP Project\\MovieRental\\reviews.txt";
 
     // Add a review to the file
     public void addReview(Review review) {

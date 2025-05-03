@@ -15,7 +15,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home(Model model) {
         model.addAttribute("reviews", reviewService.getAllReviews());
         return "index"; // maps to templates/index.html
