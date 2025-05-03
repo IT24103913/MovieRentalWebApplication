@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+.gitattributes
+admins.txt
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+pom.xml
+src/main/resources/application.properties
+src/test/java/com/example/movierental/MovieRentalApplicationTests.java

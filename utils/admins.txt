@@ -1,3 +1,14 @@
-Admin{email='Kv@gmail.com', firstName='Kenuri', lastName='Rajapaksha', password='123321', age='18', status='pending'}
-Admin{email='Jana@gmail.com', firstName='Jana', lastName='Dewa', password='123321', age='16', status='pending'}
-Admin{email='nethu@gmail.com', firstName='Nethu', lastName='Ravira', password='234432', age='20', status='pending'}
+Kv@gmail.com,123321,Kenuri,Rajapaksha,18,approved,admin
+Jana@gmail.com,123321,Jana,Dewa,16,pending,admin
+nethu@gmail.com,234432,Nethu,Ravira,20,pending,admin
+java@123@gmail.com,12134,jana,wickrama,21,pending,admin
+ownerjs@gamil.com,123321,Janadi,Wickramasinghe,24,pending,owner
+ravi@gmail.com,123456,Ravi,Fernado,23,pending,admin
+crish@gmail.com,09890,Crisha,Chathuranka,24,pending,admin
+ravi@gmail.com,123456,Ravi,Fernado,23,pending,admin
+sara@gmail.com,345543,Sara,jaya,12,pending,admin
+jsd2gmail.com,234432,Jsd,Wicky,23,pending,admin
+Sira@gmail.com,234432,Sira,Rathne,45,pending,admin
+Kv@gmail.com,234432,Kenuri,Rajapaksha,21,pending,admin
+jjjj@gmail.com,123456,jjj,ddd,22,pending,admin
+gggg@gmai.com,1232444,hhhh,dddd,33,pending,admin

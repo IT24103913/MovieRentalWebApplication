@@ -11,13 +11,45 @@ public class AdminService {
         AdminRepository.saveAdmin(newAdmin);
     }
 
-//    public List<Admin> getAllAdmins() {
-//        return AdminRepository.getAllAdmins();
-//    }
-//
-//    public List<Admin> getPendingAdmins() {
-//        return getAllAdmins().stream()
-//                .filter(admin -> admin.getStatus().equals("PENDING"))
-//                .toList();
-//    }
+    public Admin login(String email, String password) {
+        List<Admin> admins = getAllAdmins(); // Read from your .txt file
+        for (Admin admin : admins) {
+            if (admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
+
+    public List<Admin> getAllAdmins() {
+        return AdminRepository.getAllAdmins();
+    }
+
+    public List<Admin> getAdminsByStatus(String status) {
+        return getAllAdmins().stream()
+                .filter(admin -> admin.getStatus().equals(status))
+                .toList();
+    }
+
+    public void approveAdmin(String email) {
+        AdminRepository.updateAdminStatus(email, "approved");
+    }
+
+    public void rejectAdmin(String email) {
+        AdminRepository.updateAdminStatus(email, "rejected");
+    }
+
+    public int countPendingAdmins() {
+        return AdminRepository.countByStatus("pending");
+    }
+
+    public long countApprovedAdmins() {
+        return AdminRepository.countByStatus("approved");
+    }
+
+    public long countRejectedAdmins() {
+        return AdminRepository.countByStatus("rejected");
+    }
+
 }

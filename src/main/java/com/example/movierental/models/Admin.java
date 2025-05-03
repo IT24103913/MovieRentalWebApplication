@@ -7,6 +7,10 @@ public class Admin {
     private String password;
     private String age;
     private String status;
+    private String role;
+
+    public Admin() {
+    }
 
     public Admin(String email, String firstName, String lastName, String password, String age) {
         this.email = email;
@@ -15,6 +19,7 @@ public class Admin {
         this.password = password;
         this.age = age;
         this.status = "pending";
+        this.role = "admin";
     }
 
     public String getEmail() {
@@ -65,30 +70,33 @@ public class Admin {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                ", age='" + age + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+    public String getRole() {
+        return role;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 
+    public static Admin fromString(String line) {
+        String[] parts = line.split(",");
+        if (parts.length < 6) return null;
 
+        Admin admin = new Admin();
+        admin.setEmail(parts[0]);
+        admin.setPassword(parts[1]);
+        admin.setFirstName(parts[2]);
+        admin.setLastName(parts[3]);
+        admin.setAge(parts[4]);
+        admin.setStatus(parts[5]);
+        admin.setRole(parts[6]);
 
-//    @Override
-//    public String toString() {
-//        return email + ","+ firstName+ "," + lastName +","+ password + "," + age + "," + status;
-//    }
-//
-//    public static Admin fromString(String line) {
-//        String[] parts = line.split(",");
-//        if (parts.length != 6) return null;
-//        return new Admin(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
-//    }
+        return admin;
+    }
+
+    @Override
+    public String toString() {
+        return email + "," + password + "," + firstName + "," + lastName + "," + age + "," + status + "," + role;
+    }
 
 }
