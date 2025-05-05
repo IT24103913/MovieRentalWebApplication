@@ -12,7 +12,7 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-    public Movie(Long id, String title, String genre, int year, double rentalPrice) {
+    public Movie (Long id, String title, String genre, int year, double rentalPrice) {
         this.id = id;
         this.title = title;
         this.genre = genre;

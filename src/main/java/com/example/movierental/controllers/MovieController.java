@@ -4,7 +4,7 @@ import com.example.movierental.models.Movie;
 import com.example.movierental.services.MovieServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.* ;
 
 @Controller
 @RequestMapping("/movies")
