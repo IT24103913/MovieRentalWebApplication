@@ -1,65 +1,24 @@
 package com.example.movierental.models;
 
-public class Admin {
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private String age;
+public class Admin extends AbstractAdmin {
     private String status;
-    private String role;
+    private String description;
 
     public Admin() {
+        super();
     }
 
-    public Admin(String email, String firstName, String lastName, String password, String age) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.age = age;
+    public Admin(String email, String firstName, String lastName, String password, String age,String description) {
+        super(email, firstName, lastName, password, age,description, "admin");
         this.status = "pending";
-        this.role = "admin";
     }
 
-    public String getEmail() {
-        return email;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
@@ -68,14 +27,6 @@ public class Admin {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public static Admin fromString(String line) {
@@ -88,15 +39,16 @@ public class Admin {
         admin.setFirstName(parts[2]);
         admin.setLastName(parts[3]);
         admin.setAge(parts[4]);
-        admin.setStatus(parts[5]);
-        admin.setRole(parts[6]);
+        admin.setDescription(parts[5]);
+        admin.setStatus(parts[6]);
+        admin.setRole(parts[7]);
 
         return admin;
     }
 
     @Override
     public String toString() {
-        return email + "," + password + "," + firstName + "," + lastName + "," + age + "," + status + "," + role;
+        return email + "," + password + "," + firstName + "," + lastName + "," + age + "," + description+ "," + status + "," + role;
     }
 
 }

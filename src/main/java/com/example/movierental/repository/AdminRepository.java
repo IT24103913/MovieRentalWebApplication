@@ -45,7 +45,7 @@ public class AdminRepository {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Admin admin : admins) {
                 writer.write(admin.getEmail() + "," + admin.getPassword() + "," + admin.getFirstName() + "," +
-                        admin.getLastName() + "," + admin.getAge() + "," + admin.getStatus() + "," + admin.getRole());
+                        admin.getLastName() + "," + admin.getAge() + "," + admin.getDescription()+ "," + admin.getStatus() + "," + admin.getRole());
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -68,5 +68,16 @@ public class AdminRepository {
         }
         return count;
     }
+
+    public static Admin findAdminByEmail(String email) {
+        List<Admin> admins = getAllAdmins();
+        for (Admin admin : admins) {
+            if (admin.getEmail().equalsIgnoreCase(email)) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
 
 }
