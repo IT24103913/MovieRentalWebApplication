@@ -1,7 +1,7 @@
 package com.example.movierental.controllers;
 
 import com.example.movierental.models.Movie;
-import com.example.movierental.services.MovieService;
+import com.example.movierental.services.MovieServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/movies")
 public class MovieController {
-    private final MovieService movieService;
+    private final MovieServices movieService;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieServices movieService) {
         this.movieService = movieService;
     }
 

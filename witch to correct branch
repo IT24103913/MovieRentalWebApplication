@@ -1,0 +1,179 @@
+[33mcommit 762ac69e961ec1f19caea481ce6f0d66b4c32e76[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mMovie_Management[m[33m, [m[1;31morigin/movie_management[m[33m, [m[1;32mmovie_management-2[m[33m)[m
+Author: it24103552 <it24103552@my.sliit.lk>
+Date:   Sun May 4 20:29:08 2025 +0530
+
+    movie management components initialization
+    1st commit
+
+[33mcommit b795e6dbd9e585db507aab0ae32e5ea2e4bf45cc[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 8e0fb89 683c567
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Sat May 3 23:31:30 2025 +0530
+
+    Merge pull request #7 from IT24103913/Admin_Management
+    
+    Admin management
+
+[33mcommit 8e0fb8999e6f26d72b49a20966084573c11c5081[m
+Merge: a3107c1 ca2a46e
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Sat May 3 23:30:34 2025 +0530
+
+    Merge pull request #8 from IT24103913/Review_Management
+    
+    Changed ReviewController @GetMapping part
+
+[33mcommit ca2a46e1cb656b4095d0b6f5fc6d65697773ceca[m[33m ([m[1;31morigin/Review_Management[m[33m)[m
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Sat May 3 23:28:36 2025 +0530
+
+    Changed ReviewController @GetMapping part
+
+[33mcommit 683c56723b7d306e92f20c55a2f0188adc15e7ce[m[33m ([m[1;31morigin/Admin_Management[m[33m)[m
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Sat May 3 16:29:58 2025 +0530
+
+    Admin login,Owner dashboard, Admin list , UI updates
+
+[33mcommit 1f4b12f09cefae6d505f59243f5f713dac642f80[m
+Merge: 4a0bcfa a3107c1
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Sat May 3 16:29:07 2025 +0530
+
+    Merge branch 'main' of https://github.com/IT24103913/MovieRentalWebApplication into Admin_Management
+    
+    # Conflicts:
+    #       .gitignore
+
+[33mcommit 4a0bcfa29f30dd9e6b3a463fdc15e9d97f81f5d2[m
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Sat May 3 16:28:42 2025 +0530
+
+    Admin login,Owner dashboard, Admin list , UI updates
+
+[33mcommit 911ffd97c1f6655d4bef71d46c15b52722f9a5b6[m
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Sat May 3 16:17:20 2025 +0530
+
+    Admin login,Owner dashboard, Admin list , UI updates
+
+[33mcommit a3107c1d8f105b4d6b8c3fee89db141933cebf59[m
+Merge: 09a1674 6381f3b
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Fri May 2 16:21:10 2025 +0530
+
+    Merge pull request #6 from IT24103913/Admin_Management
+    
+    Admin Controller, Model, Service, Repository and Utils.
+
+[33mcommit 6381f3b2cb9304e8892710d1881c64b118a2ce2e[m
+Merge: a51bc48 09a1674
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Fri May 2 16:19:10 2025 +0530
+
+    Merge branch 'main' into Admin_Management
+
+[33mcommit a51bc48c3a0f927a10f85af7acb96891f542f2db[m
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Fri May 2 16:10:38 2025 +0530
+
+    Admin Controller, Model, Service, Repository and Utils.
+
+[33mcommit 09a1674f5813c0a1c2c5d71b198909de2da467ed[m
+Merge: ee82d48 a007a5b
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Fri May 2 13:17:10 2025 +0530
+
+    Merge pull request #5 from IT24103913/Review_Management
+    
+    Changed the ReviewController source code
+
+[33mcommit a007a5b00023082114a605116a8195449bb7819d[m
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Fri May 2 11:48:32 2025 +0530
+
+    Changed the ReviewController source code
+
+[33mcommit ee82d4833aca8243758f07bc079a69ffc946ee21[m
+Merge: ea73f5c 7b4fa86
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Sun Apr 27 18:44:49 2025 +0530
+
+    Merge pull request #4 from IT24103913/Review_Management
+    
+    Add Review model, service, controller, and index page
+
+[33mcommit 7b4fa86a42cd4c6053cf40352145c08cf22a9ed2[m
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Sun Apr 27 18:43:25 2025 +0530
+
+    Add Review model, service, controller, and index page
+
+[33mcommit ea73f5c6d7c8f571fcb35c3a2c6a01d62e230d62[m
+Merge: 7559a1f c3302ef
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Wed Apr 16 22:40:12 2025 +0530
+
+    Merge pull request #3 from IT24103913/Review_Management
+    
+    Review management
+
+[33mcommit c3302ef0430c558305873ece52aff80ddfeaf2fc[m
+Merge: 259c8a8 1bb0334
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Wed Apr 16 22:38:15 2025 +0530
+
+    Merge branch 'Review_Management' of https://github.com/IT24103913/MovieRentalWebApplication into Review_Management
+    # Please enter a commit message to explain why this merge is necessary,
+    # especially if it merges an updated upstream into a topic branch.
+    #
+    # Lines starting with '#' will be ignored, and an empty message aborts
+    # the commit.Merge Review
+
+[33mcommit 259c8a889c040b2a74d4d0255ba41aca064e8ee6[m
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Wed Apr 16 22:24:45 2025 +0530
+
+    Add basic MovieReview Classes
+
+[33mcommit 7559a1f9542d478c1ba89f5419898b06a09cb3b3[m
+Merge: bccce70 bf31d65
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Sat Apr 12 09:46:14 2025 +0530
+
+    Merge pull request #2 from IT24103913/Admin_Management
+    
+    Create Admin comment Commit
+
+[33mcommit bf31d6536fe6ac63e840c628c44e7eca06659068[m
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Fri Apr 11 13:21:43 2025 +0530
+
+    Create Admin comment Commit
+
+[33mcommit bccce702c3a9c47cb462b40ad30f365b58c37746[m
+Merge: 1bb0334 17cddb8
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Fri Apr 11 13:18:06 2025 +0530
+
+    Merge pull request #1 from IT24103913/Admin_Management
+    
+    Initiate Commit
+
+[33mcommit 17cddb88defa1af7f38336fa14de8723fcc85543[m
+Author: IT24101397 <it24101397@my.sliit.lk>
+Date:   Fri Apr 11 13:11:12 2025 +0530
+
+    Initiate Commit
+
+[33mcommit 1bb033490450d56cf9f3c48ec4ec21927daf9296[m[33m ([m[1;31morigin/Rental_Management[m[33m, [m[1;31morigin/Movie_Management[m[33m, [m[1;31morigin/Director_Management[m[33m)[m
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Thu Apr 10 08:43:36 2025 +0530
+
+    new
+
+[33mcommit daf4b0f4f278348223170ece3067f5ccdf1d9e23[m[33m ([m[1;31morigin/User-Management[m[33m)[m
+Author: IT24103913 <IT24103913@my.sliit.lk>
+Date:   Wed Apr 9 11:20:34 2025 +0530
+
+    Create README.md
