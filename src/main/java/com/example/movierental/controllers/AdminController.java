@@ -1,6 +1,7 @@
 package com.example.movierental.controllers;
 
 import com.example.movierental.models.Admin;
+import com.example.movierental.services.AdminServiceInterface;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import com.example.movierental.services.AdminService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
-    private final AdminService adminService = new AdminService();
+    private final AdminServiceInterface adminService = new AdminService();
 
     @GetMapping("/")
     public String showWelcomePage() {
@@ -36,8 +37,9 @@ public class AdminController {
                                      @RequestParam String lastName,
                                      @RequestParam String password,
                                      @RequestParam String age,
+                                     @RequestParam String description,
                                      Model model) {
-        adminService.registerAdmin(email, firstName, lastName, password, age);
+        adminService.registerAdmin(email, firstName, lastName, password, age, description);
         model.addAttribute("success", true);
         return "register";
     }
@@ -109,6 +111,18 @@ public class AdminController {
         adminService.rejectAdmin(email);
         return "redirect:/owner/dashboard";
     }
+
+    @GetMapping("/admin/view/{email}")
+    public String viewAdminProfile(@PathVariable String email, Model model) {
+        Admin admin = adminService.getAdminByEmail(email);
+        if (admin != null) {
+            model.addAttribute("admin", admin);
+            return "admin-profile"; // this is the view that will show admin details
+        } else {
+            return "redirect:/owner/admin/list"; // or show error page if not found
+        }
+    }
+
 
 
 }
