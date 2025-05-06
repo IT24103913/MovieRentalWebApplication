@@ -3,45 +3,52 @@ package com.example.movierental.controllers;
 import com.example.movierental.models.Rental;
 import com.example.movierental.services.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
-@RestController
+@Controller
 @RequestMapping("/rentals")
 
 public class RentalController {
-    private final RentalService rentalService;
-
-    public RentalController() {
-        this(null);
-    }
-
-    public RentalController(RentalService rentalService) {
-        this.rentalService = rentalService;
-    }
-
-    @PostMapping("/rent")
-    public String rentMovie(@RequestBody Rental rental) throws IOException {
-        rentalService.getAllRentals();
-        return "Movie rented successfully.";
-    }
+    private final RentalService rentalService = new RentalService();
 
     @GetMapping
-    public List<Rental> viewAllRentals() throws IOException {
-        return rentalService.getAllRentals();
+    public String viewAll(Model model) {
+        model.addAttribute("rentals", rentalService.getAllRentals());
+        return "rental-list";
     }
 
-    @PutMapping("/return/{id}")
-    public String returnMovie(@PathVariable String id) throws IOException {
-        rentalService.markAsReturned(id);
-        return "Movie returned successfully.";
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("rental", new Rental());
+        return "rental-form";
     }
-    @DeleteMapping("/{id}")
-    public String deleteRental(@PathVariable String id) throws IOException {
-        rentalService.deleteRental(id);
-        return "Rental deleted successfully.";
+
+    @PostMapping("/add")
+    public String addRental(@ModelAttribute Rental rental) {
+        rental.setRentalId(UUID.randomUUID().toString());
+        rentalService.addRental(rental);
+        return "redirect:/rentals";
     }
-}    
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable("id") String id, Model model) {
+        Rental rental = rentalService.getRentalById(id);
+        model.addAttribute("rental", rental);
+        return "rental-edit-form";
+    }
+
+    @PostMapping("/update")
+    public String updateRental(@ModelAttribute Rental rental) {
+        rentalService.updateRental(rental);
+        return "redirect:/rentals";
+    }
+
+}
+
 
