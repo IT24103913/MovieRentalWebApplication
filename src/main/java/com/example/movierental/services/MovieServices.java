@@ -2,9 +2,10 @@ package com.example.movierental.services;
 
 import com.example.movierental.models.Movie;
 import com.example.movierental.repository.MovieFileRepository;
+import com.example.movierental.utils.BubbleSortUtil;
 import org.springframework.stereotype.Service;
 
-import java.util.List ;
+import java.util.List;
 
 @Service
 public class MovieServices {
@@ -27,8 +28,12 @@ public class MovieServices {
     }
 
     // Read (all)
-    public List<Movie> findAllMovies() {
-        return movieRepository.findAll();
+    public List<Movie> findAllMovies(String sortBy) {
+        List<Movie> movies = movieRepository.findAll();
+        if (sortBy != null && !sortBy.isEmpty()) {
+            BubbleSortUtil.bubbleSort(movies, sortBy);
+        }
+        return movies;
     }
 
     // Read (by ID)
