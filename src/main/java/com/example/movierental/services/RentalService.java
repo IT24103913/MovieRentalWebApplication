@@ -8,29 +8,32 @@ import java.util.List;
 import java.util.UUID;
 
 public class RentalService {
-    private RentalRepository repository = new RentalRepository();
+    private final RentalRepository rentalRepo = new RentalRepository();
 
-    public void createRental(String movieTitle, String userId) throws IOException {
-        String id = UUID.randomUUID().toString();
-        Rental rental = new Rental(id, movieTitle, userId);
-        repository.saveRental(rental);
+    public List<Rental> getAllRentals() {
+        return rentalRepo.getAllRentals();
     }
 
-    public List<Rental> getAllRentals() throws IOException {
-        return repository.getAllRentals();
+    public void addRental(Rental rental) {
+        rentalRepo.saveRental(rental);
     }
 
-    public void markAsReturned(String rentalId) throws IOException {
-        List<Rental> rentals = repository.getAllRentals();
-        for (Rental rental : rentals) {
-            if (rental.getRentalId().equals(rentalId)) {
-                rental.setReturned(true);
+    public void updateRental(Rental updatedRental) {
+        List<Rental> rentals = rentalRepo.getAllRentals();
+        for (int i = 0; i < rentals.size(); i++) {
+            if (rentals.get(i).getRentalId().equals(updatedRental.getRentalId())) {
+                rentals.set(i, updatedRental);
+                break;
             }
         }
-        repository.updateRentals(rentals);
+        rentalRepo.overwriteAll(rentals);
     }
 
-    public void deleteRental(String rentalId) throws IOException {
-        repository.deleteRental(rentalId);
+    public Rental getRentalById(String rentalId) {
+        return rentalRepo.getAllRentals().stream()
+                .filter(r -> r.getRentalId().equals(rentalId))
+                .findFirst()
+                .orElse(null);
     }
 }
+
