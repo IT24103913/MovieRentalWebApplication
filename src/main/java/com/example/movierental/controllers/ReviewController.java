@@ -6,90 +6,59 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/reviews")
 public class ReviewController {
 
-    private final ReviewService reviewService;
+    private ReviewService reviewService;
 
-    public ReviewController(ReviewService reviewService) {
-        this.reviewService = reviewService;
+    public ReviewController() {
+        this.reviewService = new ReviewService();
     }
 
-    // Get all reviews with sorting
     @GetMapping
-    public String showAllReviews(
-            @RequestParam(required = false) String sortBy,
-            @RequestParam(defaultValue = "asc") String order,
-            Model model
-    ) throws IOException {
-        model.addAttribute("reviews", reviewService.getAllSortedReviews(sortBy, order));
-        model.addAttribute("newReview", new Review());
-        return "reviews";
+    public String viewAllReviews(Model model) {
+        model.addAttribute("reviews", reviewService.getAllReviews());
+        return "reviews"; // Return the Thymeleaf template name
     }
 
-    // Create new review
-    @PostMapping("/create")
-    public String createReview(
-            @ModelAttribute("newReview") Review review,
-            RedirectAttributes redirectAttributes
-    ) {
-        try {
-            reviewService.createReview(review);
-            System.out.println("✅ Review saved successfully!");
-            redirectAttributes.addFlashAttribute("success",
-                    "Chronicle carved successfully!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error",
-                    "Carving failed: " + e.getMessage());
-        }
+    @GetMapping("/add")
+    public String addReviewForm(Model model) {
+        model.addAttribute("review", new Review(0, "", "", 0)); // Empty review for form
+        return "addReview";
+    }
+
+    @PostMapping("/add")
+    public String addReview(@ModelAttribute Review review) {
+        reviewService.addReview(review);
         return "redirect:/reviews";
     }
 
-    // Show edit form
     @GetMapping("/edit/{id}")
-    public String showEditForm(
-            @PathVariable int id,
-            Model model
-    ) throws IOException {
-        model.addAttribute("reviewToEdit", reviewService.getReviewById(id));
-        return "edit-review";
+    public String editReviewForm(@PathVariable int id, Model model) {
+        List<Review> reviews = reviewService.getAllReviews();
+        for (Review review : reviews) {
+            if (review.getId() == id) {
+                model.addAttribute("review", review);
+                break;
+            }
+        }
+        return "editReview";
     }
 
-    // Update review
-    @PostMapping("/update/{id}")
-    public String updateReview(
-            @PathVariable int id,
-            @ModelAttribute Review updatedReview,
-            RedirectAttributes redirectAttributes
-    ) {
-        try {
-            reviewService.updateReview(updatedReview);
-            redirectAttributes.addFlashAttribute("success",
-                    "Chronicle updated!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error",
-                    "Update failed: " + e.getMessage());
-        }
+    @PostMapping("/edit")
+    public String updateReview(@ModelAttribute Review review) {
+        reviewService.updateReview(review);
         return "redirect:/reviews";
     }
 
-    // Delete review
-    @PostMapping("/delete/{id}")
-    public String deleteReview(
-            @PathVariable int id,
-            RedirectAttributes redirectAttributes
-    ) {
-        try {
-            reviewService.deleteReview(id);
-            redirectAttributes.addFlashAttribute("success",
-                    "Chronicle burned!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error",
-                    "Burning failed: " + e.getMessage());
-        }
+    @GetMapping("/delete/{id}")
+    public String deleteReview(@PathVariable int id) {
+        reviewService.deleteReview(id);
         return "redirect:/reviews";
     }
 }
