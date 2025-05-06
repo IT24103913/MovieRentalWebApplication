@@ -12,7 +12,14 @@ public class Review {
         setRating(rating);
     }
 
-    public Review(int i, String part, String part1, int i1, String part2) {
+    public Review(int id, String movieTitle, String reviewText, int rating, String userName) {
+        this.id = id;
+        this.movieTitle = movieTitle;
+        this.reviewText = reviewText;
+        this.rating = rating;
+        this.userName = userName;
+
+
     }
 
     // Validation in setter
@@ -24,7 +31,10 @@ public class Review {
     }
 
     // Getters
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
+
     public String getMovieTitle() {
         return movieTitle;
     }
@@ -41,7 +51,14 @@ public class Review {
         this.id = id;
     }
 
-    public CharSequence getUserName() {
-        return getUserName();
+    private String userName;
+
+    public String getUserName() {
+        return userName;
     }
+
+    public void setUserName (String userName) {
+        this.userName = userName;
+    }
+
 }
