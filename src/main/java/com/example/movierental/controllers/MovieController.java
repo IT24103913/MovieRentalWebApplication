@@ -15,10 +15,11 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    // List all movies
+    // List all movies with optional sorting
     @GetMapping
-    public String listMovies(Model model) {
-        model.addAttribute("movies", movieService.findAllMovies());
+    public String listMovies(@RequestParam(value = "sort", required = false) String sortBy, Model model) {
+        model.addAttribute("movies", movieService.findAllMovies(sortBy));
+        model.addAttribute("currentSort", sortBy);
         return "movies/list";
     }
 
