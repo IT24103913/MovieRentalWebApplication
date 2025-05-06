@@ -1,4 +1,5 @@
 package com.example.movierental.models;
+
 import java.io.Serializable;
 
 public class Movie implements Serializable {
