@@ -5,9 +5,9 @@ import com.example.movierental.repository.AdminRepository;
 
 import java.util.List;
 
-public class AdminService {
-    public void registerAdmin(String email, String firstName, String lastName, String password, String age) {
-        Admin newAdmin = new Admin(email, firstName, lastName, password, age);
+public class AdminService implements AdminServiceInterface {
+    public void registerAdmin(String email, String firstName, String lastName, String password, String age, String description) {
+        Admin newAdmin = new Admin(email, firstName, lastName, password, age, description);
         AdminRepository.saveAdmin(newAdmin);
     }
 
@@ -52,4 +52,13 @@ public class AdminService {
         return AdminRepository.countByStatus("rejected");
     }
 
+    public Admin getAdminByEmail(String email) {
+        List<Admin> admins = AdminRepository.getAllAdmins();
+        for (Admin admin : admins) {
+            if (admin.getEmail().equalsIgnoreCase(email)) {
+                return admin;
+            }
+        }
+        return null; // not found
+    }
 }
