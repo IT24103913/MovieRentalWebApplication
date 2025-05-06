@@ -16,4 +16,8 @@ public class OwnerService{
         return OwnerRepository.getAllOwners();
     }
 
+    private final OwnerRepository ownerRepository = new OwnerRepository();
+    public Owner viewOwner(String email) {
+        return ownerRepository.findByEmail(email);
+    }
 }

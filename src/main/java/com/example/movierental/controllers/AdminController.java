@@ -61,7 +61,8 @@ public class AdminController {
             return "login";
         }
 
-        session.setAttribute("loggedInAdmin", admin);
+        session.setAttribute("loggedInAdminEmail", admin.getEmail());
+        session.setAttribute("loggedIn", admin);
 
         if ("owner".equalsIgnoreCase(admin.getRole())) {
             return "redirect:/owner/dashboard";
@@ -123,6 +124,11 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // This clears all session data
+        return "redirect:/login"; // Redirect to your login page
+    }
 
 
 }
