@@ -1,58 +1,72 @@
-package com.example.movierental.repositories;
+package com.example.movierental.repository;
 
 import com.example.movierental.models.Review;
-import org.springframework.stereotype.Repository;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
 public class ReviewRepository {
-    private static final String FILE_PATH;
-    private static final String DELIMITER = ";;";
 
-    static {
-        FILE_PATH = System.getProperty("user.dir") + File.separator + "reviews.txt";
-    }
+    private static final String FILE_PATH = "utils/reviews.txt";
 
-    public List<Review> findAll() throws IOException {
+    // Method to get all reviews from the .txt file
+    public List<Review> getAllReviews() {
         List<Review> reviews = new ArrayList<>();
-        File file = new File(FILE_PATH);
-
-        if (!file.exists()) file.createNewFile();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(DELIMITER);
-                if (parts.length == 5) {
-                    reviews.add(new Review(
-                            Integer.parseInt(parts[0]),
-                            parts[1],
-                            parts[2],
-                            Integer.parseInt(parts[3]),
-                            parts[4]
-                    ));
-                }
+            while ((line = br.readLine()) != null) {
+                String[] reviewData = line.split(",");
+                int id = Integer.parseInt(reviewData[0]);
+                String movieTitle = reviewData[1];
+                String reviewText = reviewData[2];
+                int rating = Integer.parseInt(reviewData[3]);
+                reviews.add(new Review(id, movieTitle, reviewText, rating));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return reviews;
     }
 
-    public void saveAll(List<Review> reviews) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+    // Method to add a review to the .txt file
+    public void addReview(Review review) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+            bw.write(review.getId() + "," + review.getMovieTitle() + "," + review.getReviewText() + "," + review.getRating());
+            bw.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to update a review
+    public void updateReview(Review updatedReview) {
+        List<Review> reviews = getAllReviews();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Review review : reviews) {
-                String line = String.join(DELIMITER,
-                        String.valueOf(review.getId()),
-                        review.getMovieTitle(),
-                        review.getReviewText(),
-                        String.valueOf(review.getRating()),
-                        review.getUserName()
-                );
-                writer.write(line);
-                writer.newLine();
+                if (review.getId() == updatedReview.getId()) {
+                    review = updatedReview; // Update the review
+                }
+                bw.write(review.getId() + "," + review.getMovieTitle() + "," + review.getReviewText() + "," + review.getRating());
+                bw.newLine();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to delete a review
+    public void deleteReview(int id) {
+        List<Review> reviews = getAllReviews();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (Review review : reviews) {
+                if (review.getId() != id) {
+                    bw.write(review.getId() + "," + review.getMovieTitle() + "," + review.getReviewText() + "," + review.getRating());
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
