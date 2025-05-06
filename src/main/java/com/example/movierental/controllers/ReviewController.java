@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.io.IOException;
 
 @Controller
@@ -19,39 +18,57 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
+    // Get all reviews with sorting
     @GetMapping
-    public String showAllReviews(Model model) throws IOException {
-        model.addAttribute("reviews", reviewService.getAllReviews());
+    public String showAllReviews(
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(defaultValue = "asc") String order,
+            Model model
+    ) throws IOException {
+        model.addAttribute("reviews", reviewService.getAllSortedReviews(sortBy, order));
         model.addAttribute("newReview", new Review());
         return "reviews";
     }
 
+    // Create new review
     @PostMapping("/create")
-    public String createReview(@ModelAttribute("newReview") Review review,
-                               RedirectAttributes redirectAttributes) {
+    public String createReview(
+            @ModelAttribute("newReview") Review review,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             reviewService.createReview(review);
-            redirectAttributes.addFlashAttribute("success", "Your chronicle has been carved in stone!");
+            System.out.println("✅ Review saved successfully!");
+            redirectAttributes.addFlashAttribute("success",
+                    "Chronicle carved successfully!");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Failed to preserve your chronicle: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("error",
+                    "Carving failed: " + e.getMessage());
         }
         return "redirect:/reviews";
     }
 
+    // Show edit form
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Review id, Model model) throws IOException {
-        model.addAttribute("reviewToEdit", reviewService.updateReview(id));
+    public String showEditForm(
+            @PathVariable int id,
+            Model model
+    ) throws IOException {
+        model.addAttribute("reviewToEdit", reviewService.getReviewById(id));
         return "edit-review";
     }
 
+    // Update review
     @PostMapping("/update/{id}")
-    public String updateReview(@PathVariable int id,
-                               @ModelAttribute Review updatedReview,
-                               RedirectAttributes redirectAttributes) {
+    public String updateReview(
+            @PathVariable int id,
+            @ModelAttribute Review updatedReview,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             reviewService.updateReview(updatedReview);
             redirectAttributes.addFlashAttribute("success",
-                    "Chronicle updated successfully!");
+                    "Chronicle updated!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error",
                     "Update failed: " + e.getMessage());
@@ -59,28 +76,20 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
+    // Delete review
     @PostMapping("/delete/{id}")
-    public String deleteReview(@PathVariable int id, RedirectAttributes redirectAttributes) {
+    public String deleteReview(
+            @PathVariable int id,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             reviewService.deleteReview(id);
             redirectAttributes.addFlashAttribute("success",
-                    "Chronicle burned successfully!");
+                    "Chronicle burned!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error",
-                    "Failed to burn chronicle: " + e.getMessage());
+                    "Burning failed: " + e.getMessage());
         }
-        return "redirect:/reviews";
-    }
-
-    @PostMapping("/submitReview")
-    public String submitReview(@RequestParam String movieTitle,
-                               @RequestParam String userName,
-                               @RequestParam String comment,
-                               @RequestParam int rating) {
-
-        Review review = new Review(0, movieTitle, comment, rating, userName);
-        reviewService.createReview(review);
-
         return "redirect:/reviews";
     }
 }
