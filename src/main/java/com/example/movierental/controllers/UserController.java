@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signUpUser(@ModelAttribute("user") User user,
+    public String signUpUser(@Valid @ModelAttribute("user") User user,
                              BindingResult result,
                              Model model) {
         if (result.hasErrors()) {
@@ -60,7 +60,7 @@ public class UserController {
         try {
             User user = userService.signInUser(email, password);
             session.setAttribute("currentUser", user);
-            return "redirect:/users/profileUs";
+            return "redirect:/users/profile";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid credentials");
             return "loginUs";
@@ -75,7 +75,7 @@ public class UserController {
             return "redirect:/users/loginUs";
         }
         model.addAttribute("user", user);
-        return "profile";
+        return "userprofile";
     }
 
     @PostMapping("/profile")
@@ -84,7 +84,7 @@ public class UserController {
                                 HttpSession session,
                                 Model model) {
         if (result.hasErrors()) {
-            return "profile";
+            return "userprofile";
         }
         try {
             User currentUser = (User) session.getAttribute("currentUser");
@@ -92,10 +92,10 @@ public class UserController {
             User user = userService.updateUser(updatedUser);
             session.setAttribute("currentUser", user);
             model.addAttribute("success", "Profile updated successfully");
-            return "profile";
+            return "userprofile";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "profile";
+            return "userprofile";
         }
     }
 

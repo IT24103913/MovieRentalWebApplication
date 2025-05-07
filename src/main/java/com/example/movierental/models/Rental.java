@@ -6,32 +6,57 @@ public class Rental {
     private String userId;
     private boolean isReturned;
 
-    public Rental(String rentalId, String movieTitle, String userId) {
+    public Rental() {}
+
+    public Rental(String rentalId, String movieTitle, String userId, boolean isReturned) {
         this.rentalId = rentalId;
         this.movieTitle = movieTitle;
         this.userId = userId;
-        this.isReturned = false;
+        this.isReturned = isReturned;
     }
 
-       // Getters and setters (Encapsulation)
-        public String getRentalId() { return rentalId; }
-        public void setRentalId(String rentalId) { this.rentalId = rentalId; }
+    public String getRentalId() {
+        return rentalId;
+    }
 
-        public String getMovieTitle() { return movieTitle; }
-        public void setMovieId(String movieTitle) { this.movieTitle = movieTitle; }
+    public void setRentalId(String rentalId) {
+        this.rentalId = rentalId;
+    }
 
-        public String getUserId() { return userId; }
-        public void setCustomerId(String userId) { this.userId = userId; }
+    public String getMovieTitle() {
+        return movieTitle;
+    }
 
-        public boolean isReturned() { return isReturned; }
-        public void setReturned(boolean returned) { isReturned = returned; }
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
 
-    // For file storage
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public boolean isReturned() {
+        return isReturned;
+    }
+
+    public void setReturned(boolean returned) {
+        isReturned = returned;
+    }
+
     @Override
     public String toString() {
-        return rentalId + "," + movieTitle + "," + userId + ","  + isReturned;
+        return rentalId + "," + movieTitle + "," + userId + "," + isReturned;
+    }
+
+    public static Rental fromString(String line) {
+        String[] parts = line.split(",");
+        return new Rental(parts[0], parts[1], parts[2], Boolean.parseBoolean(parts[3]));
     }
 }
+
 
 
 
