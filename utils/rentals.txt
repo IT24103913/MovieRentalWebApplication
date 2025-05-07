@@ -1,1 +1,9 @@
 badf877b-ace9-498f-b1e4-094abc706bb0,fantasy,1234,false
+6fc9a812-1316-4811-9a0d-e95f180e85ed,fantasy,45678,false
+7b2002da-0e03-4c25-92f9-7e4f19c0d42f,fantasy,45678,true
+c3f8368a-9e8d-41d5-816e-27c06a989be6,fantasy,1234,false
+dd9f6c1f-1b0e-4092-879e-618ba938295c,fantasy,9000,true
+b72d02c9-58b6-47f1-8e25-f2a243266fa3,frozen,isuruni,true
+ab12f3db-17c4-47eb-8ee0-2eae8c085da5,frozen,isu,false
+1458fcab-32c5-4c36-8eb7-2d9e019fcf5a,fantasy,Isu,false
+d70d8b19-92ec-4abc-b633-541ea731ac24,fantasy,1234,false
