@@ -102,7 +102,6 @@
         </div>
     </div>
 
-
     <a class="nav-link" href="/owner/dashboard"><i class="fas fa-home"></i> Dashboard</a>
     <a class="nav-link" href="/owner/admin/list"><i class="fas fa-users"></i> Admin List</a>
     <a class="nav-link" href="/movies"><i class="fas fa-film"></i> All Movies</a>
@@ -116,38 +115,40 @@
         <h2>Register a New Owner</h2>
 
         <div th:if="${success}" class="magic-alert" onclick="window.location.href='/login'">
-        ✨ Successfully Registered!
+            ✨ Successfully Registered!
         </div>
 
         <form action="/owner/register" method="post">
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required />
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email" />
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required />
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Create a password" />
             </div>
 
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name:</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required />
+                <input type="text" class="form-control" id="firstName" name="firstName" required placeholder="Enter your first name" />
             </div>
 
             <div class="mb-3">
                 <label for="lastName" class="form-label">Last Name:</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" required />
+                <input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Enter your last name" />
             </div>
 
             <div class="mb-3">
                 <label for="age" class="form-label">Age:</label>
-                <input type="number" class="form-control" id="age" name="age" required />
+                <input type="number" class="form-control" id="age" name="age" required placeholder="Enter your age" />
             </div>
+
             <div class="mb-3">
                 <label for="description" class="form-label">Movie Description/Genre Preference:</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3" required placeholder="e.g., I love action, sci-fi, and thrillers..."></textarea>
             </div>
+
             <button type="submit" class="btn btn-submit w-100">Register Owner</button>
         </form>
     </div>
