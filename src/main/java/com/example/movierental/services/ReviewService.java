@@ -32,6 +32,3 @@ public class ReviewService {
         reviewRepository.deleteReview(id);
     }
 }
-
-
-

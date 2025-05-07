@@ -5,7 +5,7 @@ import java.io.*;
 class MovieRentalApplicationTest {
 
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\kavee\\Desktop\\reviews.txt";  // Replace with your file path
+        String filePath = "C:utils/reviews.txt";  // Replace with your file path
         try {
             // Try to write a test line to the file
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
