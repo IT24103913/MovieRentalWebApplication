@@ -25,7 +25,7 @@ public class ReviewController {
             @RequestParam(defaultValue = "asc") String order,
             Model model
     ) throws IOException {
-        model.addAttribute("reviews", reviewService.getAllSortedReviews(sortBy, order));
+      //  model.addAttribute("reviews", reviewService.getAllSortedReviews(sortBy, order));
         model.addAttribute("newReview", new Review());
         return "reviews";
     }

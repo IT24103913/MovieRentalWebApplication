@@ -130,5 +130,10 @@ public class AdminController {
         return "redirect:/login"; // Redirect to your login page
     }
 
+    @GetMapping("/choose-role")
+    public String chooseRole() {
+        return "choose-role"; // Name of your Thymeleaf HTML file
+    }
+
 
 }
