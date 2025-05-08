@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Directors - Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        .back-btn {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Directors List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Gender</th>
+            <th>Years of Experience</th>
+            <th>Date of Birth</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Thymeleaf will loop through the directors list and display each director's details -->
+        <tr th:each="director : ${directors}">
+            <td th:text="${director.id}"></td>
+            <td th:text="${director.name}"></td>
+            <td th:text="${director.nationality}"></td>
+            <td th:text="${director.gender}"></td>
+            <td th:text="${director.yearsOfExperience}"></td>
+            <td th:text="${director.dateOfBirth}"></td>
+            <td th:text="${director.salary}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Link to go back to homepage or another relevant page -->
+    <a href="/" class="back-btn">Back to Home</a>
+</div>
+</body>
+</html>

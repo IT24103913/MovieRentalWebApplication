@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Director</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], input[type="submit"] {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Director</h2>
+
+    <!-- Form to edit director details -->
+    <form th:action="@{/directors/edit}" method="post">
+    <label for="name">Name</label>
+        <input type="hidden" id="id" name="id" th:value="${director.id}">
+
+        <input type="text" id="name" name="name" th:value="${director.name}" required>
+
+        <label for="nationality">Nationality</label>
+        <input type="text" id="nationality" name="nationality" th:value="${director.nationality}" required>
+
+        <label>Gender</label>
+        <input type="radio" id="male" name="gender" value="male"
+               th:checked="${director.gender == 'male'}">
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="female"
+               th:checked="${director.gender == 'female'}">
+        <label for="female">Female</label>
+
+        <label for="yearsOfExperience">Years of Experience</label>
+        <input type="number" id="yearsOfExperience" name="yearsOfExperience" th:value="${director.yearsOfExperience}" required>
+
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${director.dateOfBirth}" required>
+
+        <label for="salary">Salary</label>
+        <input type="number" id="salary" name="salary" th:value="${director.salary}" required>
+
+        <input type="submit" value="Save Changes">
+    </form>
+
+    <a href="/directors" class="back-btn">Back to Directors List</a>
+</div>
+</body>
+</html>

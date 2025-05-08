@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Director</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Director</h2>
+    <form th:action="@{/directors/add}" method="post">
+        <!-- You can omit this field if ID is auto-generated in backend -->
+        <!-- <label for="id">ID</label>
+        <input type="number" name="id" id="id" /> -->
+
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
+
+        <label for="nationality">Nationality</label>
+        <input type="text" name="nationality" id="nationality" required />
+
+        <label for="gender-male">Gender</label>
+        <input type="radio" name="gender" id="gender-male"  value="male" /> Male
+        <input type="radio" name="gender" id="gender-female" value="female" /> Female
+
+        <label for="yearsOfExperience">Years of Experience</label>
+        <input type="number" name="yearsOfExperience" id="yearsOfExperience" required />
+
+        <label for="dateOfBirth">Date of Birth (YYYY-MM-DD)</label>
+        <input type="text" name="dateOfBirth" id="dateOfBirth" required />
+
+        <label for="salary">Salary</label>
+        <input type="number" step="0.01" name="salary" id="salary" required />
+
+        <input type="submit" value="Add Director" />
+    </form>
+</div>
+</body>
+</html>
