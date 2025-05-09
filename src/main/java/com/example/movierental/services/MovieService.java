@@ -21,7 +21,7 @@ public class MovieService {
         // Generate ID if not provided
         if (movie.getId() == null) {
             Long newId = movies.isEmpty() ? 1L : movies.get(movies.size() - 1).getId() + 1;
-            movie.setId(newId);
+            movie.setId(newId) ;
         }
         movies.add(movie);
         movieRepository.saveAll(movies);

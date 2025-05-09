@@ -34,7 +34,7 @@ public class MovieController {
     @PostMapping("/create")
     public String createMovie(@ModelAttribute Movie movie) {
         movieService.saveMovie(movie);
-        return "redirect:/movies";
+        return "redirect:/movies" ;
     }
 
     // Show edit form

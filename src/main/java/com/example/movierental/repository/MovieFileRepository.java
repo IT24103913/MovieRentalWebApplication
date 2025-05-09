@@ -16,7 +16,7 @@ public class MovieFileRepository {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             return (List<Movie>) ois.readObject();
         } catch (FileNotFoundException e) {
-            return new ArrayList<>();
+            return new ArrayList<>() ;
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("Error reading movies from file", e);
         }
