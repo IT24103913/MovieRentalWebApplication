@@ -30,7 +30,7 @@ public class BubbleSortUtil {
             for (int j = 0; j < n - i - 1; j++) {
                 if (comparator.compare(movies.get(j), movies.get(j + 1)) > 0) {
                     // Swap elements
-                    Movie temp = movies.get(j) ;
+                    Movie temp = movies.get(j);
                     movies.set(j, movies.get(j + 1));
                     movies.set(j + 1, temp);
                 }
