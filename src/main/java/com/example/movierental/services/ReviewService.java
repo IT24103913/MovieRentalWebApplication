@@ -31,4 +31,8 @@ public class ReviewService {
     public void deleteReview(int id) {
         reviewRepository.deleteReview(id);
     }
+
+    public void saveAllReviews(List<Review> reviews) {
+
+    }
 }

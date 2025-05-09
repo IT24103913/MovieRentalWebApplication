@@ -84,6 +84,10 @@
     <h1>Add Review</h1>
     <form th:action="@{/reviews/add}" th:object="${review}" method="post">
         <div class="mb-3">
+            <label for="userName" class="form-label">Username</label>
+            <input type="text" class="form-control" id="userName" th:field="*{userName}">
+        </div>
+        <div class="mb-3">
             <label for="movieTitle" class="form-label">Movie Title</label>
             <input type="text" class="form-control" id="movieTitle" th:field="*{movieTitle}">
         </div>

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/reviews")
@@ -56,9 +57,44 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/reviews/delete/{id}")
     public String deleteReview(@PathVariable int id) {
         reviewService.deleteReview(id);
-        return "redirect:/reviews";
+        return "redirect:/reviews/delete"; // or to your delete page
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteReview(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        try {
+            // Get all reviews first
+            List<Review> allReviews = reviewService.getAllReviews();
+
+            // Find the exact review to delete
+            Review toDelete = null;
+            for (Review review : allReviews) {
+                if (review.getId() == id) {
+                    toDelete = review;
+                    break;
+                }
+            }
+
+            if (toDelete != null) {
+                // Create a temporary list without the deleted review
+                List<Review> updatedReviews = allReviews.stream()
+                        .filter(review -> review.getId() != id)
+                        .collect(Collectors.toList());
+
+                // Update the data source through the service
+                reviewService.saveAllReviews(updatedReviews);
+            }
+
+            return "redirect:/reviews";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error deleting review");
+            return "redirect:/reviews";
+        }
+
+
+
     }
 }
