@@ -13,3 +13,7 @@ ef6031ce-33f0-4c1b-9590-e6ff83540736,fantasy,isu,false
 98d30226-df11-404b-8770-7c15fa51a5f6,fantasy,1234,false
 ba74f8c3-21be-462a-a0b0-108526ccf0a0,fantasy,1234,false
 819f62dd-5e00-446b-9a85-f1c7d6bd6088,fantasy,1234,false
+dab1e923-37c3-406f-bec7-5960b7ce92b4,fantasy,1234,false
+46839d32-51e3-4612-85e8-eb523ccd371f,frozen,9000,true
+a02e9304-f515-4b4d-8b12-7ac513e6dbc4,fantasy,1234,false
+67a6b2c7-556f-4762-8379-d9fd1b52d4ff,fantasy,1234,false
