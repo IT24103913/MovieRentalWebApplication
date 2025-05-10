@@ -1,29 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Add Rental</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: url('/images/rental.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: rgba(0, 0, 0, 0.75);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            font-size: 1.3rem;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2rem;
+        }
+
+        .form-label {
+            font-weight: bold;
+            font-size: 1.35rem;
+        }
+
+        .btn-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .btn {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
-<body class="p-4">
+<body>
 <div class="container">
-    <h2>Add New Rental</h2>
-    <form th:action="@{/rentals/add}" th:object="${rental}" method="post">
-        <div class="mb-3">
-            <label for="movieTitle" class="form-label">Movie Title</label>
-            <input type="text" class="form-control" id="movieTitle" th:field="*{movieTitle}" required>
-        </div>
-        <div class="mb-3">
-            <label for="userId" class="form-label">User ID</label>
-            <input type="text" class="form-control" id="userId" th:field="*{userId}" required>
-        </div>
-        <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" id="isReturned" th:field="*{returned}">
-            <label class="form-check-label" for="isReturned">Returned</label>
-        </div>
-        <button type="submit" class="btn btn-success">Add Rental</button>
-        <a href="/rentals" class="btn btn-secondary">Cancel</a>
-    </form>
+    <div class="form-container">
+        <h2>Add New Rental</h2>
+        <form th:action="@{/rentals/add}" th:object="${rental}" method="post">
+            <div class="mb-3">
+                <label for="movieTitle" class="form-label">Movie Title</label>
+                <input type="text" class="form-control" id="movieTitle" th:field="*{movieTitle}" required>
+            </div>
+            <div class="mb-3">
+                <label for="userId" class="form-label">User ID</label>
+                <input type="text" class="form-control" id="userId" th:field="*{userId}" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input class="form-check-input" type="checkbox" id="isReturned" th:field="*{returned}">
+                <label class="form-check-label" for="isReturned">Returned</label>
+            </div>
+            <div class="btn-actions">
+                <button type="submit" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Rental</button>
+                <a href="/rentals" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
-
 </html>
