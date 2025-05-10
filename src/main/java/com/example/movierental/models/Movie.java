@@ -43,7 +43,7 @@ public class Movie implements Serializable {
     }
 
     public void setGenre(String genre) {
-        this.genre = genre;
+        this.genre = genre ;
     }
 
     public int getYear() {
