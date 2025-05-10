@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 
 public class DirectorRepository {
-    private static final String FILE_PATH = "directors.txt";
+    private static final String FILE_PATH = "utils\\directors.txt";
     private static int directorID;
 
     public void saveDirector(Director director) throws IOException {

@@ -1,0 +1,10 @@
+1,Christopher Nolan,British-American,25,1970-07-30,1500000.00,male
+2,Kathryn Bigelow,American,30,1951-11-27,1200000.00,female
+3,Steven Spielberg,American,45,1946-12-18,2000000.00,male
+4,Sofia Coppola,American,20,1971-05-14,950000.00,female
+5,Guillermo del Toro,Mexican,28,1964-10-09,1300000.00,male
+6,Greta Gerwig,American,15,1983-08-04,850000.00,female
+7,Bong Joon-ho,South Korean,22,1969-09-14,1100000.00,male
+8,Patty Jenkins,American,18,1971-07-24,980000.00,female
+9,James Cameron,Canadian,40,1954-08-16,2100000.00,male
+10,Chloé Zhao,Chinese,12,1982-03-31,900000.00,female

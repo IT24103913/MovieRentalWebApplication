@@ -6,94 +6,125 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #f1f1f1;
+            position: relative;
+            min-height: 100vh;
+            background: url('/images/directors-bg.jpeg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Overlay layer to darken background image */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* darkness level */
+            z-index: 0;
         }
 
         .container {
-            width: 80%;
+            position: relative;
+            z-index: 1; /* bring above overlay */
+            width: 90%;
             margin: 50px auto;
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 10px;
+            opacity: 0.8;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
         }
+
 
         h2 {
             text-align: center;
-            color: #333;
+            color: #ff4d4d;
+            margin-bottom: 30px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
 
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-
-        th, td {
-            padding: 10px;
+        .card {
+            width: 260px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid #ff4d4d;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.1);
+            padding: 20px;
             text-align: center;
+            transition: transform 0.2s;
         }
 
-        th {
-            background-color: #007BFF;
-            color: white;
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255, 77, 77, 0.3);
         }
 
-        td {
-            background-color: #f9f9f9;
+        .card img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid #ff4d4d;
+        }
+
+        .card h3 {
+            margin: 10px 0 5px;
+            color: #ff6666;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #ccc;
         }
 
         .back-btn {
             display: block;
-            width: 150px;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: #007BFF;
+            width: 180px;
+            margin: 40px auto 10px;
+            padding: 12px;
+            background-color: #ff4d4d;
             color: white;
             text-align: center;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
 
         .back-btn:hover {
-            background-color: #0056b3;
+            background-color: #e60000;
         }
+
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Directors List</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Nationality</th>
-            <th>Gender</th>
-            <th>Years of Experience</th>
-            <th>Date of Birth</th>
-            <th>Salary</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Thymeleaf will loop through the directors list and display each director's details -->
-        <tr th:each="director : ${directors}">
-            <td th:text="${director.id}"></td>
-            <td th:text="${director.name}"></td>
-            <td th:text="${director.nationality}"></td>
-            <td th:text="${director.gender}"></td>
-            <td th:text="${director.yearsOfExperience}"></td>
-            <td th:text="${director.dateOfBirth}"></td>
-            <td th:text="${director.salary}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="card-grid">
+        <div class="card" th:each="director : ${directors}">
+            <img th:src="@{${director.gender == 'male' ? '/images/director-male.png' : '/images/director-female.png'}}"
+                 alt="Director photo">
 
-    <!-- Link to go back to homepage or another relevant page -->
+            <h3 th:text="${director.name}">Director Name</h3>
+            <p><strong>ID:</strong> <span th:text="${director.id}"></span></p>
+            <p><strong>Nationality:</strong> <span th:text="${director.nationality}"></span></p>
+            <p><strong>Gender:</strong> <span th:text="${director.gender}"></span></p>
+            <p><strong>Experience:</strong> <span th:text="${director.yearsOfExperience}"></span> years</p>
+            <p><strong>DOB:</strong> <span th:text="${director.dateOfBirth}"></span></p>
+            <p><strong>Salary:</strong> $<span th:text="${director.salary}"></span></p>
+        </div>
+    </div>
+
     <a href="/" class="back-btn">Back to Home</a>
 </div>
 </body>
