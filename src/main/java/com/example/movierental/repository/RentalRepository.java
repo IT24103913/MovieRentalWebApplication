@@ -42,4 +42,18 @@ public class RentalRepository {
 
 
     }
+    public void deleteRental(String id) {
+        List<Rental> rentals = getAllRentals();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (Rental rental : rentals) {
+                if (!rental.getRentalId().equalsIgnoreCase(id)) {
+                    writer.write(rental.getRentalId() + "," + rental.getMovieTitle() + "," + rental.getUserId() + "," +
+                            rental.isReturned());
+                    writer.newLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
