@@ -48,7 +48,11 @@ public class RentalController {
         rentalService.updateRental(rental);
         return "redirect:/rentals";
     }
-
+    @GetMapping("/delete/{id}")
+    public String deleteRental(@PathVariable String id) {
+        rentalService.deleteRental(id);
+        return "redirect:/rentals";
+    }
 }
 
 
