@@ -106,7 +106,11 @@
             background: linear-gradient(to right, #4facfe, #00f2fe);
         }
 
-        .btn-approve:hover, .btn-reject:hover, .btn-view:hover {
+        .btn-delete {
+            background: linear-gradient(to right, #ff4d4d, #ff6b81);
+        }
+
+        .btn-approve:hover, .btn-reject:hover, .btn-view:hover, .btn-delete:hover{
             transform: scale(1.05);
         }
 
@@ -178,7 +182,10 @@
             <tr th:each="admin : ${rejectedAdmins}">
                 <td th:text="${admin.email}"></td>
                 <td th:text="${admin.status}"></td>
-                <td><a th:href="@{'/admin/view/' + ${admin.email}}" class="magic-btn btn-view">View</a></td>
+                <td>
+                    <a th:href="@{'/admin/view/' + ${admin.email}}" class="magic-btn btn-view">View</a>
+                    <a th:href="@{'/admin/delete/' + ${admin.email}}" class="magic-btn btn-delete">Delete</a>
+                </td>
             </tr>
             </tbody>
         </table>

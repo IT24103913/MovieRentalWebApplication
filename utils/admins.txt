@@ -1,12 +1,10 @@
 email,password,firstName,lastName,age,description,status,role
 Kv@gmail.com,123321,Kenuri,Rajapaksha,18,Passionate about indie film critiques.,approved,admin
-Jana@gmail.com,123321,Jana,Dewa,16,Loves reviewing romantic comedies.,pending,admin
+Jana@gmail.com,123321,Jana,Dewa,16,Loves reviewing romantic comedies.,approved,admin
 nethu@gmail.com,234432,Nethu,Ravira,20,Focuses on animated movie reviews.,rejected,admin
-java@123@gmail.com,12134,jana,wickrama,21,Interested in analyzing thriller movie plots.,pending,admin
+java@123@gmail.com,12134,jana,wickrama,21,Interested in analyzing thriller movie plots.,approved,admin
 ownerjanadi@gamil.com,123321,Janadi,Wickramasinghe,21,I am the owner,N/A,owner
-ravi@gmail.com,123456,Ravi,Fernado,23,Shares insights on Tamil cinema trends.,pending,admin
 crish@gmail.com,09890,Crisha,Chathuranka,24,Enjoys writing about sci-fi blockbusters.,pending,admin
-ravi@gmail.com,123456,Ravi,Fernado,23,Shares insights on Tamil cinema trends.,pending,admin
 sara@gmail.com,345543,Sara,jaya,12,Recommends movies for young teens.,pending,admin
 jsd2gmail.com,234432,Jsd,Wicky,23,Focuses on documentary and true story reviews.,pending,admin
 Sira@gmail.com,234432,Sira,Rathne,45,Expert in classic Sinhala cinema.,pending,admin

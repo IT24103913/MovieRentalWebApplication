@@ -61,4 +61,8 @@ public class AdminService implements AdminServiceInterface {
         }
         return null; // not found
     }
+
+    public void deleteAdmin(String email) {
+        AdminRepository.deleteAdmin(email);
+    }
 }
