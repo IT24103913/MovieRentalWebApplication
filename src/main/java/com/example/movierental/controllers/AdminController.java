@@ -135,5 +135,9 @@ public class AdminController {
         return "choose-role"; // Name of your Thymeleaf HTML file
     }
 
-
+    @GetMapping("/admin/delete/{email}")
+    public String deleteAdmin(@PathVariable String email) {
+        adminService.deleteAdmin(email);
+        return "redirect:/owner/admin/list";
+    }
 }
