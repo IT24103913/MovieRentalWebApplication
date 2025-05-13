@@ -35,5 +35,8 @@ public class RentalService {
                 .findFirst()
                 .orElse(null);
     }
+    public void deleteRental(String id) {
+        rentalRepo.deleteRental(id);
+    }
 }
 

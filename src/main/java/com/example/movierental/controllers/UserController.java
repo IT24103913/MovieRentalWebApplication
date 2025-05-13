@@ -117,6 +117,23 @@ public class UserController {
         return "user-list";
     }
 
+    @PostMapping("/delete/{email}")
+    public String deleteUserByEmail(@PathVariable String email, HttpSession session) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        if (currentUser != null) {
+            // Optionally add authorization check here
+            // For example, only allow admin to delete other users
+            userService.deleteUser(email);
+
+            // If user is deleting themselves, invalidate session
+            if (currentUser.getEmail().equals(email)) {
+                session.invalidate();
+                return "redirect:/users/list";
+            }
+        }
+        return "redirect:/users/list";
+    }
+
     // Logout
     @GetMapping("/logout")
     public String logout(HttpSession session) {
