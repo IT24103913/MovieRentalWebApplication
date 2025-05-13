@@ -1,49 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>All Movies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url('/images/page 3.avif') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .heading-magic {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .btn-warm {
+            background-color: rgba(223,32,49,255);
+            border: none;
+            color: white;
+        }
+
+        .btn-warm:hover {
+            background-color: rgba(200,25,37,255);
+        }
+
+        table {
+            color: white;
+        }
+
+        th, td {
+            vertical-align: middle !important;
+        }
+
+        a {
+            color: #f8d7da;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #ffbbbb;
+        }
+    </style>
 </head>
-<body class="bg-light">
-<div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h2 class="mb-0">Movie Management</h2>
-        </div>
-        <div class="card-body">
-            <a th:href="@{/movies/create}" class="btn btn-success mb-3">Add New Movie</a>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Genre</th>
-                        <th>Year</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="movie : ${movies}">
-                        <td th:text="${movie.id}"></td>
-                        <td th:text="${movie.title}"></td>
-                        <td th:text="${movie.genre}"></td>
-                        <td th:text="${movie.year}"></td>
-                        <td>
-                            <a th:href="@{/movies/edit/{id}(id=${movie.id})}" class="btn btn-sm btn-warning">Edit</a>
-                            <a th:href="@{/movies/delete/{id}(id=${movie.id})}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this movie?')">Delete</a>
-                        </td>
-                    </tr>
-                    <tr th:if="${movies.isEmpty}">
-                        <td colspan="5" class="text-center">No movies found</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<body class="d-flex justify-content-center align-items-center">
+<div class="container">
+    <h1 class="heading-magic">All Movies</h1>
+    <div class="text-end mb-3">
+        <a href="/movies/create" class="btn btn-warm">Add New Movie</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-dark">
+            <thead class="table-danger">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="movie : ${movies}">
+                <td th:text="${movie.id}"></td>
+                <td th:text="${movie.title}"></td>
+                <td th:text="${movie.genre}"></td>
+                <td th:text="${movie.year}"></td>
+                <td th:text="${movie.rentalPrice}"></td>
+                <td>
+                    <a th:href="@{'/movies/edit/' + ${movie.id}}">Edit</a> |
+                    <a th:href="@{'/movies/delete/' + ${movie.id}}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
