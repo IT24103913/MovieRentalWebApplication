@@ -1,24 +1,21 @@
 package com.example.movierental.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
-@Getter
+
 public class Review {
-    @Setter
     private int id;
-    @Setter
     private String movieTitle;
-    @Setter
     private String reviewText;
-    @Setter
     private int rating;
     private LocalDate date;
     private String userName;
 
-    public Review(int id, String movieTitle, String reviewText, int rating) {
+
+    public Review() {
+    }
+
+    public Review(int id, String movieTitle, String reviewText, int rating,LocalDate date, String userName) {
         this.id = id;
         this.movieTitle = movieTitle;
         this.reviewText = reviewText;
@@ -27,30 +24,52 @@ public class Review {
         this.userName = userName;
     }
 
-    public Review() {
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public Review(String reviewerName, String reviewText, LocalDate datePosted) {
-
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public int getId() {
         return id;
     }
 
-    public void displayReview() {
-        System.out.println(getUserName() + " says: " + getReviewText());
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public String getReviewText() {
+        return reviewText;
+    }
 
-    public class PublicReview extends Review {
-        // Constructor
-        public PublicReview(String reviewerName, String reviewText, LocalDate datePosted) {
-            super(reviewerName, reviewText, datePosted);  // Inherit properties from Review
-        }
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
 
-        // Optionally, you can override displayReview() if you want to add any extra features
-        // But for now, we'll leave it as it is to use the inherited behavior.
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
 
