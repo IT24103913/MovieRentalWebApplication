@@ -23,8 +23,15 @@ public class ReviewController {
     }
 
     @GetMapping
-    public String viewAllReviews(Model model) {
-        model.addAttribute("reviews", reviewService.getAllReviews());
+    public String viewAllReviews(@RequestParam(required = false) String sort, Model model) {
+        List<Review> reviews = reviewService.getAllReviews();
+
+        // Sort by rating if sort=rating
+        if ("rating".equals(sort)) {
+            bubbleSortByRating(reviews);
+        }
+
+        model.addAttribute("reviews", reviews);
         return "reviews"; // Return the Thymeleaf template name
     }
 
@@ -62,5 +69,26 @@ public class ReviewController {
     public String deleteReview(@PathVariable int id) {
         reviewService.deleteReview(id);
         return "redirect:/reviews";
+    }
+
+    // Bubble sort by rating (descending order)
+    private static void bubbleSortByRating(List<Review> reviews) {
+        int n = reviews.size();
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (reviews.get(j).getRating() < reviews.get(j + 1).getRating()) {
+                    // Swap reviews
+                    Review temp = reviews.get(j);
+                    reviews.set(j, reviews.get(j + 1));
+                    reviews.set(j + 1, temp);
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
     }
 }
