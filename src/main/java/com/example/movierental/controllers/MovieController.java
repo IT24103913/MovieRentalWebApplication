@@ -28,6 +28,13 @@ public class MovieController {
         return "movies/list";
     }
 
+    @GetMapping("/forUser")
+    public String listMoviesU(Model model) {
+        model.addAttribute("movies", movieService.getAllMovies());
+        model.addAttribute("recentMovies", movieService.getRecentlyWatchedMovies());
+        return "movies/listu";
+    }
+
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("movie", new Movie());

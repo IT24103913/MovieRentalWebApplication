@@ -65,9 +65,6 @@
 <body>
 <div class="container py-4">
     <h1>All Movies</h1>
-    <div class="text-end add-btn">
-        <a href="/movies/create" class="btn btn-danger">Add New Movie</a>
-    </div>
     <div class="row g-4" th:if="${movies != null}">
         <div class="col-md-4" th:each="movie : ${movies}">
             <div class="card movie-card h-100">
@@ -80,9 +77,9 @@
                         <strong>Price:</strong> $<span th:text="${movie.rentalPrice}"></span>
                     </p>
                     <div class="btn-group">
-                        <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-sm btn-warning">Edit</a>
-                        <a th:href="@{'/movies/delete/' + ${movie.id}}" class="btn btn-sm btn-danger">Delete</a>
-                        </div>
+                        <a href="/rentals/add" class="btn btn-sm btn-success">Rent This</a>
+                        <a href="/reviews/add" class="btn btn-sm btn-info text-white">Add Review</a>
+                    </div>
                 </div>
             </div>
         </div>
