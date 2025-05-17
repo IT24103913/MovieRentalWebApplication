@@ -80,4 +80,32 @@ public class MovieController {
         movieService.getMovieById(id);
         return "redirect:/movies";
     }
+
+    @GetMapping("/movies")
+    public String viewAllMovies(Model model) {
+        List<Movie> movies = movieService.getAllMovies(); // All movies
+        ReviewService reviewService = null;
+        List<Review> reviews = reviewService.getAllReviews(); // All reviews
+
+        List<MovieWithRating> movieRatings = MovieSorter.calculateAverageRatings(movies, reviews);
+
+        model.addAttribute("movieRatings", movieRatings);
+        return "movies"; // Thymeleaf page name
+    }
+
+    @GetMapping("/rent/{id}")
+    public String rentMovie(@PathVariable long id, Model model) {
+        Movie movie = movieService.getMovieById(id);
+        if (movie == null) return "redirect:/movies";
+        model.addAttribute("movie", movie);
+        return "movies/rent"; // Placeholder page
+    }
+
+    @GetMapping("/review/{id}")
+    public String showReviewForm(@PathVariable long id, Model model) {
+        Movie movie = movieService.getMovieById(id);
+        if (movie == null) return "redirect:/movies";
+        model.addAttribute("movie", movie);
+        return "movies/review"; // Placeholder page
+    }
 }
