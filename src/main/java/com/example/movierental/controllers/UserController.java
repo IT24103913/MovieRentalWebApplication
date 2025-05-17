@@ -60,7 +60,7 @@ public class UserController {
         try {
             User user = userService.signInUser(email, password);
             session.setAttribute("currentUser", user);
-            return "redirect:/users/profile";
+            return "redirect:/movies";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid credentials");
             return "loginUs";
