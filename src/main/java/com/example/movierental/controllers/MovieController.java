@@ -1,10 +1,17 @@
 package com.example.movierental.controllers;
 
 import com.example.movierental.models.Movie;
+import com.example.movierental.models.Review;
+import com.example.movierental.repository.ReviewRepository;
 import com.example.movierental.services.MovieService;
+import com.example.movierental.services.ReviewService;
+import com.example.movierental.utils.MovieSorter;
+import com.example.movierental.utils.MovieWithRating;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/movies")
@@ -26,6 +33,18 @@ public class MovieController {
     public String showCreateForm(Model model) {
         model.addAttribute("movie", new Movie());
         return "movies/create";
+    }
+
+    @GetMapping("/movies")
+    public String viewAllMovies(Model model) {
+        List<Movie> movies = movieService.getAllMovies(); // All movies
+        ReviewService reviewService = null;
+        List<Review> reviews = reviewService.getAllReviews(); // All reviews
+
+        List<MovieWithRating> movieRatings = MovieSorter.calculateAverageRatings(movies, reviews);
+
+        model.addAttribute("movieRatings", movieRatings);
+        return "movies"; // Thymeleaf page name
     }
 
     @PostMapping("/create")

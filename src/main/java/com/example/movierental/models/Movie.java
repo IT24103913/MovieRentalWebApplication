@@ -21,6 +21,9 @@ public class Movie {
         this.pictureUrl = pictureUrl;
     }
 
+    public Movie(long l, String theShawshankRedemption, String drama, int i, double v) {
+    }
+
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }

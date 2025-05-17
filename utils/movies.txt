@@ -1,2 +1,37 @@
-3,Iron Man 2,Action,2013,2000.0,https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTtGS-r2bkG1Q6lHqoxqgjZbf_oH1h_KOsClLzPCyoaa8KOWKH0
-4,Avengers Infinity War,Action,2018,3000.0,https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQnbWki0iHFRV3UfJi8W2IxXY_LLRfqUf4Y4d5gEBT0IwLiXsz9
+1,Iron Man 2,Action,2013,500.0
+2,Avengers Infinity War,Action,2018,500.0
+3,Frozen,Animation,2013,500.0
+4,The dark knight,Action,2008,500.0
+5,Avatar,Science Fiction,2009,500.0
+6,Interstellar,Science Fiction,2014,500.0
+7,The matrix,Science Fiction,1999,500.0
+8,Harry Potter and the Sorcerer's Stone,Fantasy,2001,500.0
+9,Harry Potter and the Chamber of Secrets,Fantasy,2002,500.0
+10,Harry Potter and the Prisoner of Azkaban,Fantasy,2004,500.0
+11,Harry Potter and the Goblet of Fire,Fantasy,2005,500.0
+12,Harry Potter and the Order of the Phoenix,Fantasy,2007,500.0
+13,Harry Potter and the Half-Blood Prince,Fantasy,2009,500.0
+14,Harry Potter and the Deathly Hallows Part 1,Fantasy,2010,500.0
+15,Harry Potter and the Deathly Hallows Part 2,Fantasy,2011,500.0
+16,Twilight,Romance,2008,500.0
+17,Twilight New Moon,Romance,2009,500.0
+18,Twilight Eclipse,Romance,2010,500.0
+19,Twilight Breaking Dawn Part 1,Romance,2011,500.0
+20,Twilight Breaking Dawn part 2,Romance,2012,500.0
+21,Lord of the Rings: The Fellowship of the Ring,Fantasy,2001,500.0
+22,Lord of the Rings: The Two Towers,Fantasy,2002,500.0
+23,Lord of the Rings: The Return of the King,Fantasy,2003,500.0
+24,The Hobbit: An Unexpected Journey,Fantasy,2012,500.0
+25,The Hobbit: The Desolation of Smaug,Fantasy,2013,500.0
+26,The Hobbit: The Battle of the Five Armies,Fantasy,2014,500.0
+27,Spider-Man (2002),Action,2002,500.0
+28,Spider-Man 2,Action,2004,500.0
+29,Spider-Man 3,Action,2007,500.0
+30,The Amazing Spider-Man,Action,2012,500.0
+31,The Amazing Spider-Man 2,Action,2014,500.0
+32,Spider-Man: Homecoming,Action,2017,500.0
+33,Spider-Man: Far From Home,Action,2019,500.0
+34,Spider-Man: No Way Home,Action,2021,500.0
+35,Fantastic Beasts and Where to Find Them,Fantasy,2016,500.0
+36,Fantastic Beasts: The Crimes of Grindelwald,Fantasy,2018,500.0
+37,Fantastic Beasts: The Secrets of Dumbledore,Fantasy,2022,500.0
