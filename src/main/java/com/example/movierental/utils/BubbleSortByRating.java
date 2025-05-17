@@ -29,9 +29,9 @@ public static void bubbleSortByRating(List<MovieWithRating> movieRatings) {
 public static void main(String[] args) {
     // Sample movies
     List<Movie> movies = new ArrayList<>();
-    movies.add(new Movie(1L, "The Shawshank Redemption", "Drama", 1994, 3.99));
-    movies.add(new Movie(2L, "The Godfather", "Crime", 1972, 4.99));
-    movies.add(new Movie(3L, "Inception", "Sci-Fi", 2010, 2.99));
+//    movies.add(new Movie(1L, "The Shawshank Redemption", "Drama", 1994, 3.99));
+//    movies.add(new Movie(2L, "The Godfather", "Crime", 1972, 4.99));
+//    movies.add(new Movie(3L, "Inception", "Sci-Fi", 2010, 2.99));
 
     // Sample reviews
     List<Review> reviews = new ArrayList<>();

@@ -1,4 +1,2 @@
-{"email":"govi@gmail.com","password":"1234554321","firstName":"Govindu","lastName":"Sineth","age":21}
-{"email":"govi10@gmail.com","password":"5678910","firstName":"Test","lastName":"one","age":20}
-{"email":"govi11@gmail.com","password":"123321","firstName":"Test","lastName":"two","age":20}
-{"email":"govi100@gmail.com","password":"1234567","firstName":"Govindu","lastName":"Perera","age":21}
+{"email":"govi@gmail.com","password":"1234567","firstName":"Govindu","lastName":"Perera","age":20}
+{"email":"jana123@gmai.com","password":"123321","firstName":"jana","lastName":"wickrama","age":21}
