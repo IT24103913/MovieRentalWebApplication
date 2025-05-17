@@ -1,9 +1,69 @@
-0,frozen,Nice,5
-0,frozen,Nice,5
-0,frozen,Nice,5
-0,Spider man 1,Amazing,5
-0,,,0
-0,Avengers,,5
-0,,,0
-0,Avatar,Good ,3
-0,Harry potter 1 ,Wowwww,5
+2,The Dark Knight,"A masterpiece in filmmaking. Heath Ledger's Joker was brilliant!",5,2025-05-12,jane_smith
+3,Avatar,"Stunning visuals but the storyline was predictable.",3,2025-05-11,alex_lee
+4,Interstellar,"An emotional and visually stunning journey through space.",4,2025-05-10,emily_taylor
+5,The Matrix,"An iconic film that changed the way we think about reality.",5,2025-05-09,michael_brown
+6,Harry Potter and the Sorcerer's Stone,"Magical start to an epic journey!",5,2025-05-08,hannah_potter
+7,Harry Potter and the Chamber of Secrets,"Chilling and exciting second chapter.",4,2025-05-07,ron_weasley
+8,Harry Potter and the Prisoner of Azkaban,"Time travel and darker themes well done.",5,2025-05-06,hermione_g
+9,Harry Potter and the Goblet of Fire,"Intense and action-packed tournament!",5,2025-05-05,neville_long
+10,Harry Potter and the Order of the Phoenix,"Deep themes and rebellion very engaging.",4,2025-05-04,luna_love
+11,Harry Potter and the Half-Blood Prince,"Darker tone but emotionally strong.",4,2025-05-03,draco_malfoy
+12,Harry Potter and the Deathly Hallows Part 1,"Slower pace but builds great tension.",3,2025-05-02,dobby_house
+13,Harry Potter and the Deathly Hallows Part 2,"Epic conclusion to a magical saga.",5,2025-05-01,snape_s
+14,Twilight,"Romantic and mysterious but a bit slow.",3,2025-04-30,bella_sw
+15,New Moon,"More drama than plot decent soundtrack.",2,2025-04-29,edward_cull
+16,Eclipse,"Better pacing stronger characters.",3,2025-04-28,jacob_b
+17,Breaking Dawn Part 1,"Emotional moments buildup was alright.",3,2025-04-27,rosalie_h
+18,Breaking Dawn Part 2,"Satisfying ending with a twist!",4,2025-04-26,alice_c
+19,Jumanji (1995),"A wild adventure that still holds up.",5,2025-04-25,alan_parish
+20,Jumanji: Welcome to the Jungle,"Fun and modern take with great humor.",4,2025-04-24,spencer_g
+21,Jumanji: The Next Level,"Funny but more of the same.",3,2025-04-23,martha_k
+22,Lord of the Rings: The Fellowship of the Ring,"Beautiful world-building and storytelling.",5,2025-04-22,frodo_b
+23,Lord of the Rings: The Two Towers,"Outstanding battle scenes and character arcs.",5,2025-04-21,samwise_g
+24,Lord of the Rings: The Return of the King,"Perfect conclusion emotional and epic.",5,2025-04-20,aragorn_k
+25,The Hobbit: An Unexpected Journey,"Charming but a bit slow.",3,2025-04-19,bilbo_b
+26,The Hobbit: The Desolation of Smaug,"More action and the dragon was amazing!",4,2025-04-18,tauriel_g
+27,The Hobbit: The Battle of the Five Armies,"Action-heavy satisfying conclusion.",4,2025-04-17,thorin_o
+28,Spider-Man (2002),"Tobey Maguire brought depth to Peter.",4,2025-04-16,maryjane_w
+29,Spider-Man 2,"Fantastic story and emotional weight.",5,2025-04-15,harry_o
+30,Spider-Man 3,"Messy but had good moments.",3,2025-04-14,sandman_s
+31,The Amazing Spider-Man,"Andrew Garfield brought a cool new vibe.",4,2025-04-13,gwen_s
+32,The Amazing Spider-Man 2,"Too many villains but emotional impact.",3,2025-04-12,electro_m
+33,Spider-Man: Homecoming,"Tom Holland nailed the teenage Spidey.",5,2025-04-11,ned_l
+34,Spider-Man: Far From Home,"Creative visuals and a fun twist!",4,2025-04-10,mj_j
+35,Spider-Man: No Way Home,"Nostalgia and action at its best!",5,2025-04-09,dr_strange
+36,Fantastic Beasts and Where to Find Them,"Magical and visually impressive!",4,2025-04-08,newt_s
+37,Fantastic Beasts: The Crimes of Grindelwald,"Visually good but confusing plot.",3,2025-04-07,credence_b
+38,Fantastic Beasts: The Secrets of Dumbledore,"Better direction and emotional depth.",4,2025-04-06,albus_d
+39,Pan’s Labyrinth,"Dark fantasy with deep symbolism.",5,2025-04-05,ofelia_m
+40,Eragon,"Good concept but weak execution.",2,2025-04-04,eragon_s
+41,Harry Potter and the Sorcerer's Stone,"Magical start to an epic journey!",5,2025-05-13,hannah_potter
+42,Harry Potter and the Sorcerer's Stone,"Brilliant casting and visuals!",4,2025-05-12,ron_fan
+43,Harry Potter and the Sorcerer's Stone,"Felt a bit childish but enjoyable.",3,2025-05-11,magic_lover
+44,Twilight,"Romantic and mysterious but a bit slow.",3,2025-05-10,bella_sw
+45,Twilight,"Wasn't my type but nice cinematography.",2,2025-05-09,vampire_guy
+46,Twilight,"Great chemistry between leads!",4,2025-05-08,team_edward
+47,Jumanji: Welcome to the Jungle,"Funny and modern adaptation.",4,2025-05-07,jungle_fan
+48,Jumanji: Welcome to the Jungle,"Enjoyed it more than expected!",5,2025-05-06,rock_supporter
+49,Jumanji: Welcome to the Jungle,"Too predictable for me.",3,2025-05-05,karen_gillan
+50,Lord of the Rings: The Return of the King,"A masterpiece Emotional and epic.",5,2025-05-01,aragorn_fan
+51,Lord of the Rings: The Return of the King,"Perfect conclusion to the trilogy.",5,2025-04-30,frodo_fan
+52,Lord of the Rings: The Return of the King,"Very long but worth every minute.",4,2025-04-29,gondor_guard
+53,Breaking Dawn Part 2,"A thrilling finale with emotional weight.",4,2025-04-15,rosalie_f
+54,Breaking Dawn Part 2,"The twist at the end was unexpected and exciting.",5,2025-04-10,cullen_lover
+55,Breaking Dawn Part 2,"A bit rushed but overall satisfying.",3,2025-04-05,twilight_fan
+56,Jumanji (1995),"Still one of the best adventure movies ever.",5,2025-04-14,jungle_lover
+57,Jumanji (1995),"Nostalgic and heartwarming.",4,2025-04-11,robin_w
+58,Jumanji (1995),"Loved the concept and execution!",5,2025-04-08,gameboard_fan
+59,Jumanji: Welcome to the Jungle, "Surprisingly fun and well acted.",4,2025-04-13,modern_fan
+60,Jumanji: Welcome to the Jungle, "Not as magical as the original but enjoyable.",3,2025-04-10,nostalgia_seeker
+61,Jumanji: Welcome to the Jungle, "Great chemistry among the cast.",5,2025-04-07,jumanji_crew
+62,Jumanji: The Next Level ,"Enjoyed it but it felt repetitive.",3,2025-04-12,karen_s
+63,Jumanji: The Next Level, "Had some funny moments but lacked freshness.",3,2025-04-09,kevin_h
+64,Jumanji: The Next Level, "Fun ride but not as engaging as the first one.",3,2025-04-06,spencer_fan
+65,Lord of the Rings: The Fellowship of the Ring, "Absolutely magical and immersive.",5,2025-04-11,lotr_lover
+66,Lord of the Rings: The Fellowship of the Ring,"Set the perfect tone for the trilogy.",5,2025-04-08,fantasy_buff
+67,The Hobbit: An Unexpected Journey, "Not as epic as LOTR but still charming.",3,2025-04-12,hobbit_beginner
+68,The Hobbit: An Unexpected Journey, "Visually appealing but pacing was off.",3,2025-04-09,middleearth_viewer
+69,The Hobbit: An Unexpected Journey, "Good start but lacked depth.",3,2025-04-05,thorin_supporter
+70,Lord of the Rings: The Two Towers,"Dark and intense loved it.",5,2025-04-04,orc_slayer
