@@ -5,13 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List ;
+import java.util.List;
 
 @Repository
 public class MovieFileRepository {
     private static final String FILE_PATH = "utils/movies.txt";
 
-    // Get all movies
     public List<Movie> getAllMovies() {
         List<Movie> movies = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
@@ -23,8 +22,9 @@ public class MovieFileRepository {
                 String genre = data[2];
                 int year = Integer.parseInt(data[3]);
                 double price = Double.parseDouble(data[4]);
+                String pictureUrl = data.length > 5 ? data[5] : "";
 
-                movies.add(new Movie(id, title, genre, year, price));
+                movies.add(new Movie(id, title, genre, year, price, pictureUrl));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,30 +32,29 @@ public class MovieFileRepository {
         return movies;
     }
 
-    // Add a movie
     public void addMovie(Movie movie) {
-        List<Movie> movies = getAllMovies(); // Get all the movies already in the file
-        long nextId = movies.stream().mapToLong(Movie::getId).max().orElse(0L) + 1; // Generate next ID
-
-        // Set the generated ID to the new movie
+        List<Movie> movies = getAllMovies();
+        long nextId = movies.stream().mapToLong(Movie::getId).max().orElse(0L) + 1;
         movie.setId(nextId);
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            bw.write(movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + "," + movie.getYear() + "," + movie.getRentalPrice());
+            bw.write(movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + "," +
+                    movie.getYear() + "," + movie.getRentalPrice() + "," + movie.getPictureUrl());
             bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // Update a movie
     public void updateMovie(Movie updatedMovie) {
         List<Movie> movies = getAllMovies();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Movie movie : movies) {
                 if (movie.getId() == updatedMovie.getId()) {
-                    movie = updatedMovie; // Replace old with new
+                    movie = updatedMovie;
                 }
-                bw.write(movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + "," + movie.getYear() + "," + movie.getRentalPrice());
+                bw.write(movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + "," +
+                        movie.getYear() + "," + movie.getRentalPrice() + "," + movie.getPictureUrl());
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -63,13 +62,13 @@ public class MovieFileRepository {
         }
     }
 
-    // Delete a movie
     public void deleteMovie(long id) {
         List<Movie> movies = getAllMovies();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Movie movie : movies) {
                 if (movie.getId() != id) {
-                    bw.write(movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + "," + movie.getYear() + "," + movie.getRentalPrice());
+                    bw.write(movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + "," +
+                            movie.getYear() + "," + movie.getRentalPrice() + "," + movie.getPictureUrl());
                     bw.newLine();
                 }
             }
@@ -78,14 +77,7 @@ public class MovieFileRepository {
         }
     }
 
-    // Get a movie by ID
     public Movie getMovieById(long id) {
-        List<Movie> movies = getAllMovies();
-        for (Movie movie : movies) {
-            if (movie.getId() == id) {
-                return movie;
-            }
-        }
-        return null;
+        return getAllMovies().stream().filter(m -> m.getId() == id).findFirst().orElse(null);
     }
 }
