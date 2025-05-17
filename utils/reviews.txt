@@ -1,3 +1,4 @@
+1,Frozen,"A movie with so many beautiful effects and music",4,2025-05-17, kate_theo
 2,The Dark Knight,"A masterpiece in filmmaking. Heath Ledger's Joker was brilliant!",5,2025-05-12,jane_smith
 3,Avatar,"Stunning visuals but the storyline was predictable.",3,2025-05-11,alex_lee
 4,Interstellar,"An emotional and visually stunning journey through space.",4,2025-05-10,emily_taylor
@@ -11,10 +12,10 @@
 12,Harry Potter and the Deathly Hallows Part 1,"Slower pace but builds great tension.",3,2025-05-02,dobby_house
 13,Harry Potter and the Deathly Hallows Part 2,"Epic conclusion to a magical saga.",5,2025-05-01,snape_s
 14,Twilight,"Romantic and mysterious but a bit slow.",3,2025-04-30,bella_sw
-15,New Moon,"More drama than plot decent soundtrack.",2,2025-04-29,edward_cull
-16,Eclipse,"Better pacing stronger characters.",3,2025-04-28,jacob_b
-17,Breaking Dawn Part 1,"Emotional moments buildup was alright.",3,2025-04-27,rosalie_h
-18,Breaking Dawn Part 2,"Satisfying ending with a twist!",4,2025-04-26,alice_c
+15,Twilight New Moon,"More drama than plot decent soundtrack.",2,2025-04-29,edward_cull
+16,Twilight Eclipse,"Better pacing stronger characters.",3,2025-04-28,jacob_b
+17,Twilight Breaking Dawn Part 1,"Emotional moments buildup was alright.",3,2025-04-27,rosalie_h
+18,Twilight Breaking Dawn Part 2,"Satisfying ending with a twist!",4,2025-04-26,alice_c
 19,Jumanji (1995),"A wild adventure that still holds up.",5,2025-04-25,alan_parish
 20,Jumanji: Welcome to the Jungle,"Fun and modern take with great humor.",4,2025-04-24,spencer_g
 21,Jumanji: The Next Level,"Funny but more of the same.",3,2025-04-23,martha_k
@@ -55,7 +56,7 @@
 56,Jumanji (1995),"Still one of the best adventure movies ever.",5,2025-04-14,jungle_lover
 57,Jumanji (1995),"Nostalgic and heartwarming.",4,2025-04-11,robin_w
 58,Jumanji (1995),"Loved the concept and execution!",5,2025-04-08,gameboard_fan
-59,Jumanji: Welcome to the Jungle, "Surprisingly fun and well acted.",4,2025-04-13,modern_fan
+59,Jumanji: Welcome to the Jungle,"Surprisingly fun and well acted.",4,2025-04-13,modern_fan
 60,Jumanji: Welcome to the Jungle, "Not as magical as the original but enjoyable.",3,2025-04-10,nostalgia_seeker
 61,Jumanji: Welcome to the Jungle, "Great chemistry among the cast.",5,2025-04-07,jumanji_crew
 62,Jumanji: The Next Level ,"Enjoyed it but it felt repetitive.",3,2025-04-12,karen_s
