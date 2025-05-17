@@ -24,4 +24,6 @@ public interface AdminServiceInterface {
     long countRejectedAdmins();
 
     Admin getAdminByEmail(String email);
+
+    void deleteAdmin(String email);
 }

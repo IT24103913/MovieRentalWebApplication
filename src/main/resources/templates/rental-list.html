@@ -10,16 +10,17 @@
     <a href="/rentals/add" class="btn btn-primary mb-3">Add Rental</a>
     <table class="table table-striped">
         <thead>
-        <tr><th>ID</th><th>Movie Title</th><th>User ID</th><th>Returned</th><th>Action</th></tr>
+        <tr><th>Movie Title</th><th>User ID</th><th>Returned</th><th>Action</th></tr>
         </thead>
         <tbody>
         <tr th:each="r : ${rentals}">
-            <td th:text="${r.rentalId}"></td>
+            <td hidden="hidden" th:text="${r.rentalId}"></td>
             <td th:text="${r.movieTitle}"></td>
             <td th:text="${r.userId}"></td>
             <td th:text="${r.returned}"></td>
             <td>
                 <a th:href="@{'/rentals/edit/' + ${r.rentalId}}" class="btn btn-sm btn-warning">Edit</a>
+                <a th:href="@{'/rentals/delete/' +  ${r.rentalId}}" class=" btn btn-sm btn-light text-danger">Delete</a>
             </td>
         </tr>
         </tbody>
@@ -44,7 +45,12 @@
             padding: 20px;
             border-radius: 10px;
         }
+
+        .btn-delete:hover {
+            background-color: rgba(255, 255, 255, 0.55);
+            color: rgb(114, 28, 48);
+        }
+
     </style>
 </head>
-
 </html>

@@ -60,7 +60,7 @@ public class UserController {
         try {
             User user = userService.signInUser(email, password);
             session.setAttribute("currentUser", user);
-            return "redirect:/users/profile";
+            return "redirect:/movies";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid credentials");
             return "loginUs";
@@ -115,6 +115,23 @@ public class UserController {
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "user-list";
+    }
+
+    @PostMapping("/delete/{email}")
+    public String deleteUserByEmail(@PathVariable String email, HttpSession session) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        if (currentUser != null) {
+            // Optionally add authorization check here
+            // For example, only allow admin to delete other users
+            userService.deleteUser(email);
+
+            // If user is deleting themselves, invalidate session
+            if (currentUser.getEmail().equals(email)) {
+                session.invalidate();
+                return "redirect:/users/list";
+            }
+        }
+        return "redirect:/users/list";
     }
 
     // Logout

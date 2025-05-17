@@ -79,5 +79,20 @@ public class AdminRepository {
         return null;
     }
 
+    public static void deleteAdmin(String email) {
+        List<Admin> admins = getAllAdmins();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (Admin admin : admins) {
+                if (!admin.getEmail().equalsIgnoreCase(email)) {
+                    writer.write(admin.getEmail() + "," + admin.getPassword() + "," + admin.getFirstName() + "," +
+                            admin.getLastName() + "," + admin.getAge() + "," + admin.getDescription()+ "," + admin.getStatus() + "," + admin.getRole());
+                    writer.newLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
