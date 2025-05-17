@@ -1,11 +1,14 @@
 package com.example.movierental.repository;
 
 import com.example.movierental.models.Review;
+import org.springframework.stereotype.Repository;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ReviewRepository {
 
     private static final String FILE_PATH = "utils/reviews.txt";
@@ -21,7 +24,10 @@ public class ReviewRepository {
                 String movieTitle = reviewData[1];
                 String reviewText = reviewData[2];
                 int rating = Integer.parseInt(reviewData[3]);
-                reviews.add(new Review(id, movieTitle, reviewText, rating));
+                LocalDate date = LocalDate.parse(reviewData[4]);
+                String userName = reviewData[5];
+
+                reviews.add(new Review(id, movieTitle, reviewText, rating, date, userName));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,10 +35,29 @@ public class ReviewRepository {
         return reviews;
     }
 
+    private int generateNextId() {
+        List<Review> reviews = getAllReviews();
+        int maxId = 0;
+        for (Review review : reviews) {
+            if (review.getId() > maxId) {
+                maxId = review.getId();
+            }
+        }
+        return maxId + 1;
+    }
+
     // Method to add a review to the .txt file
     public void addReview(Review review) {
+        review.setId(generateNextId());    // Auto-generate ID
+        review.setDate(LocalDate.now());   // Set the current date if not set
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            bw.write(review.getId() + "," + review.getMovieTitle() + "," + review.getReviewText() + "," + review.getRating());
+            bw.write(review.getId() + ","
+                    + review.getMovieTitle() + ","
+                    + review.getReviewText() + ","
+                    + review.getRating() + ","
+                    + review.getDate() + ","
+                    + review.getUserName());
             bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,10 +69,23 @@ public class ReviewRepository {
         List<Review> reviews = getAllReviews();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Review review : reviews) {
+                // Update the review that matches the ID
                 if (review.getId() == updatedReview.getId()) {
-                    review = updatedReview; // Update the review
+                    // Directly update the fields
+                    review.setMovieTitle(updatedReview.getMovieTitle());
+                    review.setReviewText(updatedReview.getReviewText());
+                    review.setRating(updatedReview.getRating());
+                    review.setDate(updatedReview.getDate());
+                    review.setUserName(updatedReview.getUserName());
                 }
-                bw.write(review.getId() + "," + review.getMovieTitle() + "," + review.getReviewText() + "," + review.getRating());
+
+                // Write the review (updated or not) back to the file
+                bw.write(review.getId() + ","
+                        + review.getMovieTitle() + ","
+                        + review.getReviewText() + ","
+                        + review.getRating() + ","
+                        + review.getDate() + ","
+                        + review.getUserName());
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -61,7 +99,12 @@ public class ReviewRepository {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Review review : reviews) {
                 if (review.getId() != id) {
-                    bw.write(review.getId() + "," + review.getMovieTitle() + "," + review.getReviewText() + "," + review.getRating());
+                    bw.write(review.getId() + ","
+                            + review.getMovieTitle() + ","
+                            + review.getReviewText() + ","
+                            + review.getRating() + ","
+                            + review.getDate() + ","
+                            + review.getUserName());
                     bw.newLine();
                 }
             }

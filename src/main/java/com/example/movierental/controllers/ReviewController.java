@@ -2,6 +2,7 @@ package com.example.movierental.controllers;
 
 import com.example.movierental.models.Review;
 import com.example.movierental.services.ReviewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,27 +10,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/reviews")
 public class ReviewController {
 
-    private ReviewService reviewService;
+    private final ReviewService reviewService;
 
-    public ReviewController() {
-        this.reviewService = new ReviewService();
+    @Autowired
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
     }
 
     @GetMapping
-    public String viewAllReviews(Model model) {
-        model.addAttribute("reviews", reviewService.getAllReviews());
+    public String viewAllReviews(@RequestParam(required = false) String sort, Model model) {
+        List<Review> reviews = reviewService.getAllReviews();
+
+        // Sort by rating if sort=rating
+        if ("rating".equals(sort)) {
+            bubbleSortByRating(reviews);
+        }
+
+        model.addAttribute("reviews", reviews);
         return "reviews"; // Return the Thymeleaf template name
     }
 
     @GetMapping("/add")
     public String addReviewForm(Model model) {
-        model.addAttribute("review", new Review(0, "", "", 0)); // Empty review for form
+        model.addAttribute("review", new Review());
         return "addReview";
     }
 
@@ -57,44 +65,30 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
-    @PostMapping("/reviews/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteReview(@PathVariable int id) {
         reviewService.deleteReview(id);
-        return "redirect:/reviews/delete"; // or to your delete page
+        return "redirect:/reviews";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteReview(@PathVariable int id, RedirectAttributes redirectAttributes) {
-        try {
-            // Get all reviews first
-            List<Review> allReviews = reviewService.getAllReviews();
-
-            // Find the exact review to delete
-            Review toDelete = null;
-            for (Review review : allReviews) {
-                if (review.getId() == id) {
-                    toDelete = review;
-                    break;
+    // Bubble sort by rating (descending order)
+    private static void bubbleSortByRating(List<Review> reviews) {
+        int n = reviews.size();
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (reviews.get(j).getRating() < reviews.get(j + 1).getRating()) {
+                    // Swap reviews
+                    Review temp = reviews.get(j);
+                    reviews.set(j, reviews.get(j + 1));
+                    reviews.set(j + 1, temp);
+                    swapped = true;
                 }
             }
-
-            if (toDelete != null) {
-                // Create a temporary list without the deleted review
-                List<Review> updatedReviews = allReviews.stream()
-                        .filter(review -> review.getId() != id)
-                        .collect(Collectors.toList());
-
-                // Update the data source through the service
-                reviewService.saveAllReviews(updatedReviews);
+            if (!swapped) {
+                break;
             }
-
-            return "redirect:/reviews";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error deleting review");
-            return "redirect:/reviews";
         }
-
-
-
     }
 }

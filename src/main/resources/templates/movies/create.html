@@ -4,40 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Movie</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url('/images/page 3.avif') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .heading-magic {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: none;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(255, 87, 34, 0.7);
+        }
+
+        .btn-warm {
+            background-color: rgba(223,32,49,255);
+            border: none;
+            color: white;
+        }
+
+        .btn-warm:hover {
+            background-color: rgba(200,25,37,255);
+        }
+    </style>
 </head>
-<body class="bg-light">
-<div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h2 class="mb-0">Add New Movie</h2>
+<body class="d-flex justify-content-center align-items-center">
+<div class="container">
+    <h2 class="heading-magic">Create New Movie</h2>
+
+    <form th:action="@{/movies/create}" method="post" th:object="${movie}" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" id="title" th:field="*{title}" class="form-control" required>
+            <div class="invalid-feedback">Please enter a title.</div>
         </div>
-        <div class="card-body">
-            <form th:action="@{/movies}" th:object="${movie}" method="post" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" id="title" th:field="*{title}" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a movie title.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="genre" class="form-label">Genre</label>
-                    <input type="text" id="genre" th:field="*{genre}" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a genre.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="year" class="form-label">Year</label>
-                    <input type="number" id="year" th:field="*{year}" class="form-control" min="1900" max="2100" required>
-                    <div class="invalid-feedback">Please enter a valid year (1900-2100).</div>
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a th:href="@{/movies}" class="btn btn-secondary">Cancel</a>
-            </form>
+
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <input type="text" id="genre" th:field="*{genre}" class="form-control" required>
+            <div class="invalid-feedback">Please enter a genre.</div>
         </div>
-    </div>
+
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
+            <input type="number" id="year" th:field="*{year}" class="form-control" min="1900" max="2100" required>
+            <div class="invalid-feedback">Enter a valid year between 1900 and 2100.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="rentalPrice" class="form-label">Rental Price</label>
+            <input type="number" id="rentalPrice" th:field="*{rentalPrice}" class="form-control" step="0.01" required>
+            <div class="invalid-feedback">Please enter a rental price.</div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-warm">Create</button>
+            <a th:href="@{/movies}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
 </div>
+
 <script>
-    (function () {
+    (() => {
         'use strict';
         const forms = document.querySelectorAll('.needs-validation');
         Array.from(forms).forEach(form => {

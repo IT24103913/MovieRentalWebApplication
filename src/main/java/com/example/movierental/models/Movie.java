@@ -2,7 +2,7 @@ package com.example.movierental.models;
 
 import java.io.Serializable;
 
-public class Movie implements Serializable {
+public class Movie {
     private Long id;
     private String title;
     private String genre;
@@ -61,4 +61,5 @@ public class Movie implements Serializable {
     public void setRentalPrice(double rentalPrice) {
         this.rentalPrice = rentalPrice;
     }
+
 }
