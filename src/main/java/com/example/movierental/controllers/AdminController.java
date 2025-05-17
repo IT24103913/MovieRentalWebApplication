@@ -104,13 +104,13 @@ public class AdminController {
     @GetMapping("/admin/approve/{email}")
     public String approveAdmin(@PathVariable String email) {
         adminService.approveAdmin(email);
-        return "redirect:/owner/dashboard";
+        return "redirect:/owner/admin/list";
     }
 
     @GetMapping("/admin/reject/{email}")
     public String rejectAdmin(@PathVariable String email) {
         adminService.rejectAdmin(email);
-        return "redirect:/owner/dashboard";
+        return "redirect:/owner/admin/list";
     }
 
     @GetMapping("/admin/view/{email}")
