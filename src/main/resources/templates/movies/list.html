@@ -82,6 +82,8 @@
                     <div class="btn-group">
                         <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-sm btn-warning">Edit</a>
                         <a th:href="@{'/movies/delete/' + ${movie.id}}" class="btn btn-sm btn-danger">Delete</a>
+                        <a th:href="@{'/movies/rent/' + ${movie.id}}" class="btn btn-sm btn-success">Rent This</a>
+                        <a th:href="@{'/movies/review/' + ${movie.id}}" class="btn btn-sm btn-info text-white">Add Review</a>
                     </div>
                 </div>
             </div>
