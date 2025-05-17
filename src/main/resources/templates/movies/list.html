@@ -3,11 +3,10 @@
 <head>
     <title>All Movies</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             background: url('/images/page 3.avif') no-repeat center center fixed;
             background-size: cover;
             position: relative;
@@ -18,89 +17,75 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.6);
             z-index: 0;
         }
 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1000px;
-            background-color: rgba(0, 0, 0, 0.75);
-            padding: 30px;
+        }
+
+        .movie-card {
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-            color: white;
+            overflow: hidden;
+            transition: transform 0.2s ease;
         }
 
-        .heading-magic {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 2.5rem;
+        .movie-card:hover {
+            transform: scale(1.02);
+        }
+
+        .movie-img {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .btn-group a {
+            margin-right: 8px;
+        }
+
+        h1 {
+            color: white;
             text-align: center;
-            margin-bottom: 25px;
+            margin: 30px 0;
+            font-family: 'MedievalSharp', cursive;
+            text-shadow: 2px 2px 4px black;
         }
 
-        .btn-warm {
-            background-color: rgba(223,32,49,255);
-            border: none;
-            color: white;
-        }
-
-        .btn-warm:hover {
-            background-color: rgba(200,25,37,255);
-        }
-
-        table {
-            color: white;
-        }
-
-        th, td {
-            vertical-align: middle !important;
-        }
-
-        a {
-            color: #f8d7da;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #ffbbbb;
+        .add-btn {
+            margin-bottom: 20px;
         }
     </style>
 </head>
-<body class="d-flex justify-content-center align-items-center">
-<div class="container">
-    <h1 class="heading-magic">All Movies</h1>
-    <div class="text-end mb-3">
-        <a href="/movies/create" class="btn btn-warm">Add New Movie</a>
+<body>
+<div class="container py-4">
+    <h1>All Movies</h1>
+    <div class="text-end add-btn">
+        <a href="/movies/create" class="btn btn-danger">Add New Movie</a>
     </div>
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-dark">
-            <thead class="table-danger">
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Year</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="movie : ${movies}">
-                <td th:text="${movie.id}"></td>
-                <td th:text="${movie.title}"></td>
-                <td th:text="${movie.genre}"></td>
-                <td th:text="${movie.year}"></td>
-                <td th:text="${movie.rentalPrice}"></td>
-                <td>
-                    <a th:href="@{'/movies/edit/' + ${movie.id}}">Edit</a> |
-                    <a th:href="@{'/movies/delete/' + ${movie.id}}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="row g-4" th:if="${movies != null}">
+        <div class="col-md-4" th:each="movie : ${movies}">
+            <div class="card movie-card h-100">
+                <img class="card-img-top movie-img" th:src="${movie.pictureUrl}" alt="Movie Image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${movie.title}">Movie Title</h5>
+                    <p class="card-text">
+                        <strong>Genre:</strong> <span th:text="${movie.genre}"></span><br/>
+                        <strong>Year:</strong> <span th:text="${movie.year}"></span><br/>
+                        <strong>Price:</strong> $<span th:text="${movie.rentalPrice}"></span>
+                    </p>
+                    <div class="btn-group">
+                        <a th:href="@{'/movies/edit/' + ${movie.id}}" class="btn btn-sm btn-warning">Edit</a>
+                        <a th:href="@{'/movies/delete/' + ${movie.id}}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
