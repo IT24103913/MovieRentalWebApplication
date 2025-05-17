@@ -1,4 +1,4 @@
-1,Frozen ,"A movie with so many beautiful effects and music",4,2025-05-17, kate_theo
+1,Frozen,"A movie with so many beautiful effects and music",4,2025-05-17, kate_theo
 2,The Dark Knight,"A masterpiece in filmmaking. Heath Ledger's Joker was brilliant!",5,2025-05-12,jane_smith
 3,Avatar,"Stunning visuals but the storyline was predictable.",3,2025-05-11,alex_lee
 4,Interstellar,"An emotional and visually stunning journey through space.",4,2025-05-10,emily_taylor
