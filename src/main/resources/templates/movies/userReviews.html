@@ -52,25 +52,11 @@
         .review-row td {
             padding: 10px;
         }
-
-        .btn-sort {
-            background-color: #28a745;
-            border: none;
-            color: white;
-        }
-
-        .btn-sort:hover {
-            background-color: #218838;
-        }
     </style>
 </head>
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">All Reviews</h1>
-    <div class="d-flex justify-content-end mb-3">
-        <a th:href="@{/reviews(sort='rating')}" class="btn btn-sort">Sort by Rating</a>
-        <a th:href="@{/reviews}" class="btn btn-secondary ms-2">Clear Sort</a>
-    </div>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
