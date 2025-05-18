@@ -2,7 +2,7 @@ package com.example.movierental.models;
 
 import java.time.LocalDate;
 
-
+//Encapsulation
 public class Review {
     private int id;
     private String movieTitle;
@@ -15,6 +15,7 @@ public class Review {
     public Review() {
     }
 
+    //Parameterized constructor
     public Review(int id, String movieTitle, String reviewText, int rating,LocalDate date, String userName) {
         this.id = id;
         this.movieTitle = movieTitle;
