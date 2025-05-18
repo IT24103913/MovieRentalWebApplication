@@ -14,4 +14,5 @@ gggg@gmai.com,1232444,hhhh,dddd,33,Analyzes international festival-winning films
 chrish@gmail.com,54321,chrish,fdo,23,Enjoys comparing remakes and originals.,pending,admin
 chathuranga@gmail.com,54345,Chathu,Fdo,34,I prefer romantic,approved,admin
 owner2@gamil.com,12321,Kenuri,Ravira,23,I add,N/A,owner
-kaveeshatharindi333@gmail.com,kaveesha_T27,Kaveesha,Mahindarathne,22,null,approved,admin
+kaveeshatharindi333@gmail.com,kaveesha_T27,Kaveesha,Mahindarathne,22,New,pending,admin
+wicky4@gmail.com,123321,Rasadari,jayakodi,45,I love Harry Potter,rejected,admin
