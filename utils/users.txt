@@ -1,1 +1,4 @@
 {"email":"govi@gmail.com","password":"1234567","firstName":"Govindu","lastName":"Perera","age":20}
+{"email":"jana123@gmai.com","password":"123321","firstName":"jana","lastName":"wickrama","age":21}
+{"email":"kavee789@gmail.com","password":"200307","firstName":"kavee","lastName":"tharindi","age":21}
+

@@ -2,7 +2,6 @@ package com.example.movierental.models;
 
 public class Admin extends AbstractAdmin {
     private String status;
-    private String description;
 
     public Admin() {
         super();
