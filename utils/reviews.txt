@@ -67,4 +67,3 @@
 67,The Hobbit: An Unexpected Journey, "Not as epic as LOTR but still charming.",3,2025-04-12,hobbit_beginner
 68,The Hobbit: An Unexpected Journey, "Visually appealing but pacing was off.",3,2025-04-09,middleearth_viewer
 69,The Hobbit: An Unexpected Journey, "Good start but lacked depth.",3,2025-04-05,thorin_supporter
-70,Lord of the Rings: The Two Towers,"Dark and intense loved it.",5,2025-04-04,orc_slayer
