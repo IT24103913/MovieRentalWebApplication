@@ -1,4 +1,4 @@
-1,Frozen,"A movie with so many beautiful effects and music",4,2025-05-17, kate_theo
+1,Frozen,"A movie with so many beautiful effects",4,2025-05-18,null
 2,The Dark Knight,"A masterpiece in filmmaking. Heath Ledger's Joker was brilliant!",5,2025-05-12,jane_smith
 3,Avatar,"Stunning visuals but the storyline was predictable.",3,2025-05-11,alex_lee
 4,Interstellar,"An emotional and visually stunning journey through space.",4,2025-05-10,emily_taylor
@@ -46,7 +46,6 @@
 46,Twilight,"Great chemistry between leads!",4,2025-05-08,team_edward
 47,Jumanji: Welcome to the Jungle,"Funny and modern adaptation.",4,2025-05-07,jungle_fan
 48,Jumanji: Welcome to the Jungle,"Enjoyed it more than expected!",5,2025-05-06,rock_supporter
-49,Jumanji: Welcome to the Jungle,"Too predictable for me.",3,2025-05-05,karen_gillan
 50,Lord of the Rings: The Return of the King,"A masterpiece Emotional and epic.",5,2025-05-01,aragorn_fan
 51,Lord of the Rings: The Return of the King,"Perfect conclusion to the trilogy.",5,2025-04-30,frodo_fan
 52,Lord of the Rings: The Return of the King,"Very long but worth every minute.",4,2025-04-29,gondor_guard

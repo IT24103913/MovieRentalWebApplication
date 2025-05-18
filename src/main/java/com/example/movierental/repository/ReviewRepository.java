@@ -24,7 +24,14 @@ public class ReviewRepository {
                 String movieTitle = reviewData[1];
                 String reviewText = reviewData[2];
                 int rating = Integer.parseInt(reviewData[3]);
-                LocalDate date = LocalDate.parse(reviewData[4]);
+                String dateString = reviewData[4];
+                LocalDate date = null;
+                if (dateString != null && !dateString.equals("null") && !dateString.isEmpty()) {
+                    date = LocalDate.parse(dateString);
+                } else {
+                    // Set default date, e.g., today or null
+                    date = LocalDate.now();  // or null if you allow nullable
+                }
                 String userName = reviewData[5];
 
                 reviews.add(new Review(id, movieTitle, reviewText, rating, date, userName));
