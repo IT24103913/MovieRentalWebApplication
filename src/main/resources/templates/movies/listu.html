@@ -64,7 +64,12 @@
 </head>
 <body>
 <div class="container py-4">
-    <h1>All Movies</h1>
+    <div class="d-flex justify-content-start mb-3">
+        <a href="/reviews/userReviews" class="btn btn-warning">
+            View All Movie Reviews
+        </a>
+    </div>
+    <h1>All Movies</h1>
     <div class="row g-4" th:if="${movies != null}">
         <div class="col-md-4" th:each="movie : ${movies}">
             <div class="card movie-card h-100">

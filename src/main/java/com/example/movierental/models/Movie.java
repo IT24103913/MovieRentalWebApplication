@@ -2,7 +2,7 @@ package com.example.movierental.models;
 
 import java.io.Serializable;
 
-public class Movie {
+public class Movie implements Serializable{
     private Long id;
     private String title;
     private String genre;
