@@ -23,8 +23,7 @@ public class ReviewController {
 
     @GetMapping
     public String viewAllReviews(@RequestParam(required = false) String sort, Model model) {
-        List<Review> reviews = reviewService.getAllReviews();     // Get all reviews from the service
-
+        MyArray<Review> reviews = reviewService.getAllReviewsAsMyArray();     // Get all reviews from the service
 
         // Sort by rating if sort=rating
         if ("rating".equals(sort)) {
@@ -34,6 +33,7 @@ public class ReviewController {
         model.addAttribute("reviews", reviews);
         return "reviews"; // Return the Thymeleaf template name (reviews.html)
     }
+
     @GetMapping("/userReviews")
     public String allReviewsForUsers(@RequestParam(required = false) String sort, Model model) {
         List<Review> reviews = reviewService.getAllReviews();     // Get all reviews from the service

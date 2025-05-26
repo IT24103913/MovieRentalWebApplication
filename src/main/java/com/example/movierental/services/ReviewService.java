@@ -5,9 +5,6 @@ import com.example.movierental.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.*;
-
 @Service
 public class ReviewService {
 
@@ -18,10 +15,12 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public List<Review> getAllReviews() {
+    // Return MyArray instead of List
+    public Review[] getAllReviews() {
         return reviewRepository.getAllReviews();
     }
 
+    // Assuming your repository accepts MyArray or Review objects as-is
     public void addReview(Review review) {
         reviewRepository.addReview(review);
     }

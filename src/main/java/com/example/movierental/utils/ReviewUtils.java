@@ -1,17 +1,16 @@
 package com.example.movierental.utils;
 
 import com.example.movierental.models.Review;
+import com.example.movierental.dataStructures.MyArray;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReviewUtils {
 
-    public static List<Review> loadReviewsFromTextFile() {
-        List<Review> reviews = new ArrayList<>();
-        File file = new File("reviews.txt"); // Make sure this file exists
+    public static MyArray<Review> loadReviewsFromTextFile() {
+        MyArray<Review> reviews = new MyArray<>();
+        File file = new File("reviews.txt"); // Ensure the file exists
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
