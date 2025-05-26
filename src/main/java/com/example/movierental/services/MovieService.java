@@ -2,14 +2,16 @@ package com.example.movierental.services;
 
 import com.example.movierental.models.Movie;
 import com.example.movierental.repository.MovieFileRepository;
+import com.example.movierental.utils.MovieStack;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MovieService {
     private final MovieFileRepository movieRepository;
-    private final Deque<Movie> recentlyWatchedStack = new ArrayDeque<>();
+    private final MovieStack recentlyWatchedStack = new MovieStack();
 
     public MovieService(MovieFileRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -38,14 +40,15 @@ public class MovieService {
     }
 
     public void addToRecentlyWatched(Movie movie) {
-        recentlyWatchedStack.removeIf(m -> m.getId().equals(movie.getId()));
         recentlyWatchedStack.push(movie);
-        if (recentlyWatchedStack.size() > 5) {
-            recentlyWatchedStack.removeLast();
-        }
     }
 
     public List<Movie> getRecentlyWatchedMovies() {
-        return new ArrayList<>(recentlyWatchedStack);
+        Movie[] array = recentlyWatchedStack.getAll();
+        List<Movie> result = new ArrayList<>();
+        for (Movie m : array) {
+            result.add(m);
+        }
+        return result;
     }
 }
