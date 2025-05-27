@@ -57,6 +57,32 @@ public class ReviewRepository {
         return result;
     }
 
+    public MyArray<Review> getAllReviewsAsMyArray() {
+        MyArray<Review> reviews = new MyArray<>();  // Dynamic array
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] reviewData = line.split(",");
+                int id = Integer.parseInt(reviewData[0]);
+                String movieTitle = reviewData[1];
+                String reviewText = reviewData[2];
+                int rating = Integer.parseInt(reviewData[3]);
+                String dateString = reviewData[4];
+                LocalDate date = dateString == null || dateString.equals("null") || dateString.isEmpty()
+                        ? LocalDate.now()
+                        : LocalDate.parse(dateString);
+                String userName = reviewData[5];
+
+                Review review = new Review(id, movieTitle, reviewText, rating, date, userName);
+                reviews.add(review);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return reviews;
+    }
+
+
     private int generateNextId() {
         Review[] reviews = getAllReviews();
         int maxId = 0;

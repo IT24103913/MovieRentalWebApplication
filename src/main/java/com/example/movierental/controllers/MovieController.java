@@ -1,5 +1,6 @@
 package com.example.movierental.controllers;
 
+import com.example.movierental.dataStructures.MyArray;
 import com.example.movierental.models.Movie;
 import com.example.movierental.models.Review;
 import com.example.movierental.services.MovieService;
@@ -79,7 +80,7 @@ public class MovieController {
     public String viewAllMovies(Model model) {
         List<Movie> movies = movieService.getAllMovies(); // All movies
         ReviewService reviewService = null;
-        List<Review> reviews = reviewService.getAllReviews(); // All reviews
+        MyArray<Review> reviews = reviewService.getAllReviewsAsMyArray(); // All reviews
 
         List<MovieWithRating> movieRatings = MovieSorter.calculateAverageRatings(movies, reviews);
 

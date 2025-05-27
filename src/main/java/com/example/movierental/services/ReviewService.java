@@ -1,5 +1,6 @@
 package com.example.movierental.services;
 
+import com.example.movierental.dataStructures.MyArray;
 import com.example.movierental.models.Review;
 import com.example.movierental.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class ReviewService {
     // Return MyArray instead of List
     public Review[] getAllReviews() {
         return reviewRepository.getAllReviews();
+    }
+
+    public MyArray<Review> getAllReviewsAsMyArray() {
+        return reviewRepository.getAllReviewsAsMyArray();
     }
 
     // Assuming your repository accepts MyArray or Review objects as-is
