@@ -1,56 +1,308 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Rentals</title>
+    <title>Rental List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="p-4">
-<div class="container">
-    <h2>Rental List</h2>
-    <a href="/rentals/add" class="btn btn-primary mb-3">Add Rental</a>
-    <table class="table table-striped">
-        <thead>
-        <tr><th>Movie Title</th><th>User ID</th><th>Returned</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-        <tr th:each="r : ${rentals}">
-            <td hidden="hidden" th:text="${r.rentalId}"></td>
-            <td th:text="${r.movieTitle}"></td>
-            <td th:text="${r.userId}"></td>
-            <td th:text="${r.returned}"></td>
-            <td>
-                <a th:href="@{'/rentals/edit/' + ${r.rentalId}}" class="btn btn-sm btn-warning">Edit</a>
-                <a th:href="@{'/rentals/delete/' +  ${r.rentalId}}" class=" btn btn-sm btn-light text-danger">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
-
-<head>
-    <title>Rentals</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-image: url('/images/rental5.jpg'); /* Adjust the path accordingly */
+            margin: 0;
+            min-height: 100vh;
+            background: url('/images/rental5.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 0;
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.53); /* Optional: makes content more readable */
+            position: relative;
+            z-index: 1;
+            padding-top: 60px;
+        }
+
+        .main-card {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #ffc107;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2.5rem;
+        }
+
+        .rental-card {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(50, 50, 50, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .rental-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+
+        .card-title {
+            color: #ffc107;
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .status-rented {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status-returned {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            transform: scale(1.05);
+        }
+
+        .profile-dropdown {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-btn:hover {
+            background-color: white;
+            color: black;
+            border-color: white;
+        }
+
+        .profile-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .dropdown-menu {
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0;
+            margin-top: 5px;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .dropdown-item {
+            color: white;
+            padding: 10px 16px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .dropdown-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+        }
+
+        .recently-watched-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
             padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ffc107;
+        }
+
+        .section-title {
+            color: #ffc107;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .recent-movie-card {
+            background-color: rgba(30, 30, 30, 0.8);
             border-radius: 10px;
+            padding: 15px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .btn-delete:hover {
-            background-color: rgba(255, 255, 255, 0.55);
-            color: rgb(114, 28, 48);
+        .recent-movie-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 193, 7, 0.2);
         }
 
+        .recent-movie-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .add-rental-btn {
+            background-color: #fd7e14;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .add-rental-btn:hover {
+            background-color: #e67312;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
+<body>
+
+<!-- Profile Dropdown -->
+<div class="profile-dropdown dropdown">
+    <a class="profile-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user-circle profile-icon"></i>
+        <span>Profile</span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" th:href="@{/users/profile}"><i class="fas fa-user me-2"></i> My Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" th:href="@{/users/logout}"><i class="fas fa-sign-out-alt me-2"></i> Sign Out</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="main-card">
+        <h2>Your Rentals</h2>
+
+        <div class="d-flex justify-content-start mb-4">
+            <a href="/rentals/add" class="btn btn-warning add-rental-btn">
+                <i class="fas fa-plus-circle me-2"></i>Add New Rental
+            </a>
+        </div>
+
+        <!-- Recently Watched Section -->
+        <div class="recently-watched-section" th:if="${recentlyWatched != null and not #lists.isEmpty(recentlyWatched)}">
+            <h3 class="section-title"><i class="fas fa-history me-2"></i>Recently Watched</h3>
+            <div class="row g-4">
+                <div class="col-md-3" th:each="movie : ${recentlyWatched}">
+                    <div class="recent-movie-card text-center">
+                        <i class="fas fa-film fa-3x" style="color: #ffc107;"></i>
+                        <div class="recent-movie-title" th:text="${movie.title}">Movie Title</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Rentals Section -->
+        <div class="row g-4">
+            <div class="col-md-4" th:each="r : ${rentals}">
+                <div class="card rental-card p-4">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${r.movieTitle}">Movie Title</h5>
+                        <p class="card-text">
+                            <strong><i class="fas fa-user me-2"></i>User ID:</strong>
+                            <span th:text="${r.userId}"></span>
+                        </p>
+                        <p class="card-text">
+                            <strong><i class="fas fa-info-circle me-2"></i>Status:</strong>
+                            <span th:if="${r.returned}" class="status-badge status-returned">
+                                <i class="fas fa-check-circle me-1"></i>Returned
+                            </span>
+                            <span th:unless="${r.returned}" class="status-badge status-rented">
+                                <i class="fas fa-clock me-1"></i>Rented
+                            </span>
+                        </p>
+                        <div class="btn-group w-100">
+                            <a th:href="@{'/rentals/watch/' + ${r.rentalId}}" class="btn btn-success btn-sm">
+                                <i class="fas fa-play me-1"></i>Watch
+                            </a>
+                            <a th:href="@{'/rentals/delete/' + ${r.rentalId}}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt me-1"></i>Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
