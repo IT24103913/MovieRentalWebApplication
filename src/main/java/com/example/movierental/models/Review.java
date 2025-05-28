@@ -26,10 +26,12 @@ public class Review {
     }
 
     public String getMovieTitle() {
+
         return movieTitle;
     }
 
     public void setMovieTitle(String movieTitle) {
+
         this.movieTitle = movieTitle;
     }
 
@@ -38,38 +40,47 @@ public class Review {
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public String getReviewText() {
+
         return reviewText;
     }
 
     public void setReviewText(String reviewText) {
+
         this.reviewText = reviewText;
     }
 
     public int getRating() {
+
         return rating;
     }
 
     public void setRating(int rating) {
+
         this.rating = rating;
     }
 
     public LocalDate getDate() {
+
         return date;
     }
 
     public void setDate(LocalDate date) {
+
         this.date = date;
     }
 
     public String getUserName() {
+
         return userName;
     }
 
     public void setUserName(String userName) {
+
         this.userName = userName;
     }
 }
