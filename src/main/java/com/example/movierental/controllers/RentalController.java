@@ -1,25 +1,31 @@
 package com.example.movierental.controllers;
 
+import com.example.movierental.models.Movie;
 import com.example.movierental.models.Rental;
 import com.example.movierental.services.RentalService;
+import com.example.movierental.utils.MovieStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 @RequestMapping("/rentals")
-
 public class RentalController {
-    private final RentalService rentalService = new RentalService();
+
+    @Autowired
+    private RentalService rentalService;
+
+    @Autowired
+    private MovieStack movieStack;
 
     @GetMapping
     public String viewAll(Model model) {
         model.addAttribute("rentals", rentalService.getAllRentals());
+        model.addAttribute("recentlyWatched", movieStack.getAll());
         return "rental-list";
     }
 
@@ -48,11 +54,23 @@ public class RentalController {
         rentalService.updateRental(rental);
         return "redirect:/rentals";
     }
+
     @GetMapping("/delete/{id}")
     public String deleteRental(@PathVariable String id) {
         rentalService.deleteRental(id);
         return "redirect:/rentals";
     }
+
+    @GetMapping("/watch/{id}")
+    public String watchMovie(@PathVariable String id, Model model) {
+        Rental rental = rentalService.getRentalById(id);
+        if (rental != null) {
+            Movie movie = new Movie();
+            movie.setId(System.currentTimeMillis());
+            movie.setTitle(rental.getMovieTitle());
+            movieStack.push(movie);
+            model.addAttribute("rental", rental);
+        }
+        return "watch";
+    }
 }
-
-

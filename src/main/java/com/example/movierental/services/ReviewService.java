@@ -1,5 +1,6 @@
 package com.example.movierental.services;
 
+import com.example.movierental.dataStructures.MyArray;
 import com.example.movierental.models.Review;
 import com.example.movierental.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,14 @@ public class ReviewService {
 
     public void deleteReview(int id) {
         reviewRepository.deleteReview(id);
+    }
+
+    public MyArray<Review> getAllReviewsAsMyArray() {
+        Review[] reviews = getAllReviews();
+        MyArray<Review> reviewArray = new MyArray<>(reviews.length);
+        for (Review review : reviews) {
+            reviewArray.add(review);
+        }
+        return reviewArray;
     }
 }

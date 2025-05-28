@@ -21,7 +21,12 @@ public class Movie implements Serializable{
         this.pictureUrl = pictureUrl;
     }
 
-    public Movie(long l, String theShawshankRedemption, String drama, int i, double v) {
+    public Movie(long id, String title, String genre, int year, double price) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.year = year;
+        this.rentalPrice = price;
     }
 
     public Long getId() { return id; }

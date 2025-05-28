@@ -1,5 +1,6 @@
 package com.example.movierental.controllers;
 
+import com.example.movierental.dataStructures.MyArray;
 import com.example.movierental.models.Review;
 import com.example.movierental.services.ReviewService;
 import com.example.movierental.utils.ReviewUtils;
@@ -27,7 +28,7 @@ public class ReviewController {
 
         // Sort by rating if sort=rating
         if ("rating".equals(sort)) {
-            bubbleSortByRating(reviews);
+            bubbleSortByRating((List<Review>) reviews);
         }
 
         model.addAttribute("reviews", reviews);
@@ -36,7 +37,7 @@ public class ReviewController {
 
     @GetMapping("/userReviews")
     public String allReviewsForUsers(@RequestParam(required = false) String sort, Model model) {
-        List<Review> reviews = reviewService.getAllReviews();     // Get all reviews from the service
+        List<Review> reviews = List.of(reviewService.getAllReviews());     // Get all reviews from the service
 
 
         // Sort by rating if sort=rating
@@ -65,7 +66,7 @@ public class ReviewController {
     @GetMapping("/edit/{id}")
     // Shows the form to edit an existing review with the given id
     public String editReviewForm(@PathVariable int id, Model model) {
-        List<Review> reviews = reviewService.getAllReviews();
+        List<Review> reviews = List.of(reviewService.getAllReviews());
         for (Review review : reviews) {
             if (review.getId() == id) {
                 model.addAttribute("review", review);
@@ -89,7 +90,7 @@ public class ReviewController {
 
     @GetMapping("/reviews/public")
     public String viewUserReviews(Model model) {
-        List<Review> reviews = ReviewUtils.loadReviewsFromTextFile(); //Abstraction
+        List<Review> reviews = (List<Review>) ReviewUtils.loadReviewsFromTextFile(); //Abstraction
         model.addAttribute("reviews", reviews);
         return "userReviews"; // matches the HTML file name
     }
