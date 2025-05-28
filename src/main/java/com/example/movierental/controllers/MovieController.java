@@ -80,9 +80,10 @@ public class MovieController {
     public String viewAllMovies(Model model) {
         List<Movie> movies = movieService.getAllMovies(); // All movies
         ReviewService reviewService = null;
+
         MyArray<Review> reviews = reviewService.getAllReviewsAsMyArray(); // All reviews
 
-        List<MovieWithRating> movieRatings = MovieSorter.calculateAverageRatings(movies, reviews);
+        List<MovieWithRating> movieRatings = MovieSorter.calculateAverageRatings(movies, (MyArray<Review>) reviews);
 
         model.addAttribute("movieRatings", movieRatings);
         return "movies"; // Thymeleaf page name
