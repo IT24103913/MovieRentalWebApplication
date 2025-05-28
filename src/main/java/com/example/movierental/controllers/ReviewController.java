@@ -3,6 +3,7 @@ package com.example.movierental.controllers;
 import com.example.movierental.dataStructures.MyArray;
 import com.example.movierental.models.Review;
 import com.example.movierental.services.ReviewService;
+import com.example.movierental.utils.ReviewSorter;
 import com.example.movierental.utils.ReviewUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,23 +33,21 @@ public class ReviewController {
         }
 
         model.addAttribute("reviews", reviews.toArray());
-        return "reviews"; // Return the Thymeleaf template name (reviews.html)
+        return "reviews";// Return the Thymeleaf template name (reviews.html)
     }
 
     @GetMapping("/userReviews")
     public String allReviewsForUsers(@RequestParam(required = false) String sort, Model model) {
         MyArray<Review> reviews = reviewService.getAllReviewsAsMyArray();     // Get all reviews from the service
 
-
         // Sort by rating if sort=rating
         if ("rating".equals(sort)) {
-            bubbleSortByRating(reviews);
+            ReviewSorter.bubbleSortByRating(reviews);  // Call the method from the utility class
         }
 
         model.addAttribute("reviews", reviews.toArray());
-        return "movies/userReviews"; // Return the Thymeleaf template name (reviews.html)
+        return "userReviews"; // Return the Thymeleaf template name (reviews.html)
     }
-
 
     @GetMapping("/add")
     public String addReviewForm(Model model) {

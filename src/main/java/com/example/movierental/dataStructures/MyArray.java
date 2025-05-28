@@ -65,8 +65,8 @@ public class MyArray<T> {
         }
         size = 0;
     }
-    public T[] toArray() {
-        T[] array = (T[]) new Object[size];
+    public Object[] toArray() {
+        Object[] array = new Object[size];
         for (int i = 0; i < size; i++) {
             array[i] = (T) data[i];
         }
