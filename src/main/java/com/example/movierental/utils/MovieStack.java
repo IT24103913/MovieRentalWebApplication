@@ -1,7 +1,11 @@
 package com.example.movierental.utils;
 
 import com.example.movierental.models.Movie;
+import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
+@Component
 public class MovieStack {
     private final int capacity = 5;
     private final Movie[] stack;
@@ -13,9 +17,14 @@ public class MovieStack {
     }
 
     public void push(Movie movie) {
-        // Remove existing occurrence
+        if (movie == null || movie.getId() == null) {
+            return;
+        }
+
+        // Check if movie already exists in stack
         for (int i = 0; i <= top; i++) {
-            if (stack[i].getId().equals(movie.getId())) {
+            if (stack[i] != null && movie.getId().equals(stack[i].getId())) {
+                // Remove the existing movie
                 removeAt(i);
                 break;
             }
@@ -26,7 +35,7 @@ public class MovieStack {
             removeAt(0);
         }
 
-        // Shift elements up and push new movie on top
+        // Add new movie to top
         stack[++top] = movie;
     }
 
@@ -39,11 +48,7 @@ public class MovieStack {
     }
 
     public Movie[] getAll() {
-        Movie[] result = new Movie[top + 1];
-        for (int i = 0; i <= top; i++) {
-            result[i] = stack[i];
-        }
-        return result;
+        return Arrays.copyOfRange(stack, 0, top + 1);
     }
 
     public boolean isEmpty() {

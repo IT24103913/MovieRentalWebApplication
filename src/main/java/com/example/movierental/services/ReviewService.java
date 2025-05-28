@@ -54,4 +54,13 @@ public class ReviewService {
     public void deleteReview(int id) {
         reviewRepository.deleteReview(id);
     }
+
+    public MyArray<Review> getAllReviewsAsMyArray() {
+        Review[] reviews = getAllReviews();
+        MyArray<Review> reviewArray = new MyArray<>(reviews.length);
+        for (Review review : reviews) {
+            reviewArray.add(review);
+        }
+        return reviewArray;
+    }
 }

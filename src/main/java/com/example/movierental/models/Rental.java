@@ -15,6 +15,7 @@ public class Rental {
         this.isReturned = isReturned;
     }
 
+    // Getters and Setters
     public String getRentalId() {
         return rentalId;
     }
@@ -34,6 +35,7 @@ public class Rental {
     public String getUserId() {
         return userId;
     }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }
@@ -56,7 +58,3 @@ public class Rental {
         return new Rental(parts[0], parts[1], parts[2], Boolean.parseBoolean(parts[3]));
     }
 }
-
-
-
-
