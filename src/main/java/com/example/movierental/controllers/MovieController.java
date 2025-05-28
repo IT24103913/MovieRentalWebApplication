@@ -89,6 +89,7 @@ public class MovieController {
         return "movies"; // Thymeleaf page name
     }
 
+
     @GetMapping("/rent/{id}")
     public String rentMovie(@PathVariable long id, Model model) {
         Movie movie = movieService.getMovieById(id);
