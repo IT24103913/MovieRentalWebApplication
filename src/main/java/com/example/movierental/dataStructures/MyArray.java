@@ -65,4 +65,11 @@ public class MyArray<T> {
         }
         size = 0;
     }
+    public Object[] toArray() {
+        Object[] array = new Object[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = (T) data[i];
+        }
+        return array;
+    }
 }

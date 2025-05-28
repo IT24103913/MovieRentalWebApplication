@@ -3,6 +3,7 @@ package com.example.movierental.controllers;
 import com.example.movierental.dataStructures.MyArray;
 import com.example.movierental.models.Review;
 import com.example.movierental.services.ReviewService;
+import com.example.movierental.utils.ReviewSorter;
 import com.example.movierental.utils.ReviewUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,27 +29,25 @@ public class ReviewController {
 
         // Sort by rating if sort=rating
         if ("rating".equals(sort)) {
-            bubbleSortByRating((List<Review>) reviews);
+            bubbleSortByRating(reviews);
         }
 
-        model.addAttribute("reviews", reviews);
-        return "reviews"; // Return the Thymeleaf template name (reviews.html)
+        model.addAttribute("reviews", reviews.toArray());
+        return "reviews";// Return the Thymeleaf template name (reviews.html)
     }
 
     @GetMapping("/userReviews")
     public String allReviewsForUsers(@RequestParam(required = false) String sort, Model model) {
-        List<Review> reviews = List.of(reviewService.getAllReviews());     // Get all reviews from the service
-
+        MyArray<Review> reviews = reviewService.getAllReviewsAsMyArray();     // Get all reviews from the service
 
         // Sort by rating if sort=rating
         if ("rating".equals(sort)) {
-            bubbleSortByRating(reviews);
+            ReviewSorter.bubbleSortByRating(reviews);  // Call the method from the utility class
         }
 
-        model.addAttribute("reviews", reviews);
-        return "movies/userReviews"; // Return the Thymeleaf template name (reviews.html)
+        model.addAttribute("reviews", reviews.toArray());
+        return "userReviews"; // Return the Thymeleaf template name (reviews.html)
     }
-
 
     @GetMapping("/add")
     public String addReviewForm(Model model) {
@@ -90,13 +89,13 @@ public class ReviewController {
 
     @GetMapping("/reviews/public")
     public String viewUserReviews(Model model) {
-        List<Review> reviews = (List<Review>) ReviewUtils.loadReviewsFromTextFile(); //Abstraction
+        MyArray<Review> reviews = ReviewUtils.loadReviewsFromTextFile(); //Abstraction
         model.addAttribute("reviews", reviews);
         return "userReviews"; // matches the HTML file name
     }
 
     // Bubble sort by rating (descending order)
-    private static void bubbleSortByRating(List<Review> reviews) {
+    private static void bubbleSortByRating(MyArray<Review> reviews) {
         int n = reviews.size();
         boolean swapped;
         for (int i = 0; i < n - 1; i++) {

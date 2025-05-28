@@ -18,4 +18,5 @@ public class MovieWithRating {
     public double getAverageRating() {
         return averageRating;
     }
+
 }

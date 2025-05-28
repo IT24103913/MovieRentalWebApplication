@@ -80,7 +80,8 @@ public class MovieController {
     public String viewAllMovies(Model model) {
         List<Movie> movies = movieService.getAllMovies(); // All movies
         ReviewService reviewService = null;
-        List<Review> reviews = List.of(reviewService.getAllReviews()); // All reviews
+
+        MyArray<Review> reviews = reviewService.getAllReviewsAsMyArray(); // All reviews
 
         List<MovieWithRating> movieRatings = MovieSorter.calculateAverageRatings(movies, (MyArray<Review>) reviews);
 
